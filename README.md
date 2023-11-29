@@ -1,3 +1,3 @@
-#Whiskey Bot
+# Whiskey Bot
 
-yarn ```v. >= 1.22.19
+```yarn v. >= 8.11.0```
