@@ -8,9 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node ./src/index.ts",
-    "run": "tsc && node ./build/index.js",
-    "build": "tsc",
-    "start": "node ./build/index.js"
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc"
   },
   "dependencies": {
     "telegraf": "^4.15.0"
