@@ -1,0 +1,12 @@
+{
+  "name": "whiskyBot",
+  "version": "0.0.1",
+  "description": "Telegram Bot",
+  "main": "main.js",
+  "repository": "git@github.com:HackerLacker/whiskyBot.git",
+  "author": "Vladislav <ghoulyaev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.15.0"
+  }
+}
