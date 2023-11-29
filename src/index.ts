@@ -25,11 +25,11 @@ bot.command("whiskey", async (ctx) => {
   let message;
 
   if (ctx.message.from.username) message = "@" + ctx.message.from.username;
-  else message = ctx.message.from.first_name; // TODO: tag with telegram id
+  else message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`; // TODO: tag with telegram id
   message =
     message +
     ` ты выпил ${drank.now.toString()} литров виски, красава. За все время ты бахнул ${drank.every.toString()} литров`;
-  return ctx.reply(message);
+  return ctx.replyWithHTML(message);
 });
 
 bot.launch();
