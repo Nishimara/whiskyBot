@@ -1,3 +1,3 @@
 # Whiskey Bot
 
-```yarn v. >= 8.11.0```
+```pnpm v. >= 8.11.0```
