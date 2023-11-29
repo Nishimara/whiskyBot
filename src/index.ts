@@ -5,6 +5,7 @@ import { whiskey } from "./methods/whiskey";
 import { Drank } from "./classes/Drank";
 
 const config: iConfig = JSON.parse(readFileSync("config.json", "utf-8"));
+if (process.env.TOKEN) config.token = process.env.TOKEN;
 
 const bot = new Telegraf(config.token);
 
@@ -30,7 +31,7 @@ bot.command("whiskey", async (ctx) => {
       message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
       withHTML = 1;
   };
-  
+
   message =
     message +
     ` ты выпил ${drank.now.toString()} литров виски, красава. За все время ты бахнул ${drank.every.toString()} литров`;
