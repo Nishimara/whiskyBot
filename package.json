@@ -7,8 +7,10 @@
   "author": "Vladislav <ghoulyaev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc",
-    "run": "tsc && node ./build/index.js"
+    "dev": "ts-node ./src/index.ts",
+    "run": "tsc && node ./build/index.js",
+    "build": "tsc",
+    "start": "node ./build/index.js"
   },
   "dependencies": {
     "telegraf": "^4.15.0"
