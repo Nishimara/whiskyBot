@@ -12,6 +12,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "mysql2": "^3.6.5",
     "telegraf": "^4.15.2"
   },
