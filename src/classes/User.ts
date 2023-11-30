@@ -8,27 +8,28 @@ export class User {
         this.id = id;
         this.amount = 0;
         this.lastTimeDrank = 0;
-        
+
         const prisma = getPrisma();
-        prisma.users.findUnique({
-            where: {
-                id: id
-            }
-        }).then(resp => {
-            if(resp){
-                this.amount = resp.amount;
-                this.lastTimeDrank = resp.lastTimeDrank;
-            } else {
-                prisma.users.create({
-                    data: {
-                        id: this.id,
-                        amount: this.amount,
-                        lastTimeDrank: this.lastTimeDrank
-                    }
-                })
-            }
-        })
-        
+        prisma.users
+            .findUnique({
+                where: {
+                    id: id,
+                },
+            })
+            .then((resp) => {
+                if (resp) {
+                    this.amount = resp.amount;
+                    this.lastTimeDrank = resp.lastTimeDrank;
+                } else {
+                    prisma.users.create({
+                        data: {
+                            id: this.id,
+                            amount: this.amount,
+                            lastTimeDrank: this.lastTimeDrank,
+                        },
+                    });
+                }
+            });
     }
 
     public getId(): number {
@@ -47,24 +48,23 @@ export class User {
         this.amount += amount;
         getPrisma().users.update({
             data: {
-                amount: this.amount
+                amount: this.amount,
             },
             where: {
-                id: this.id
-            }
-        })
-
+                id: this.id,
+            },
+        });
     }
 
     public setLastTimeDrank(lastTimeDrank: number) {
         this.lastTimeDrank = lastTimeDrank;
         getPrisma().users.update({
             data: {
-                lastTimeDrank: this.lastTimeDrank
+                lastTimeDrank: this.lastTimeDrank,
             },
             where: {
-                id: this.id
-            }
-        })
+                id: this.id,
+            },
+        });
     }
 }
