@@ -1,11 +1,8 @@
-import { readFileSync } from "fs";
-import { iConfig } from "./interfaces";
 import { Telegraf } from "telegraf";
 import { whiskey } from "./methods/whiskey";
+import { config } from "./consts";
+import { logger } from "./functions/logger";
 import { Drank } from "./classes/Drank";
-
-const config: iConfig = JSON.parse(readFileSync("config.json", "utf-8"));
-if (process.env.TOKEN) config.token = process.env.TOKEN;
 
 const bot = new Telegraf(config.token);
 
