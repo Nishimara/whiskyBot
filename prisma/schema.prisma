@@ -9,7 +9,7 @@ datasource db {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model users {
-  id            Int    @id @unique
+  id            BigInt    @id @unique
   amount        Float  @default(0.0)
   lastTimeDrank Int    @default(0)
 }

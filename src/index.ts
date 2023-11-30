@@ -4,6 +4,7 @@ import { config } from "./consts";
 import { logger } from "./functions/logger";
 import { Drank } from "./classes/Drank";
 import { User } from "./classes/User";
+import { getPrisma } from "./functions/prismaClient";
 
 const bot = new Telegraf(config.token);
 
@@ -19,7 +20,10 @@ bot.start((ctx) => {
 
 bot.command("whiskey", async (ctx) => {
   if (ctx.chat.type == "private") return 1;
-  const drank: Drank = whiskey(new User(ctx.message.from.id));
+
+  const user = new User(ctx.message.from.id)
+  await user.init();
+  const drank: Drank = whiskey(user);
 
   let message;
   let withHTML;
@@ -32,7 +36,7 @@ bot.command("whiskey", async (ctx) => {
 
   message =
     message +
-    ` ты выпил ${drank.now.toString()} литров виски, красава. За все время ты бахнул ${drank.every.toString()} литров`;
+    ` ты выпил ${drank.now.toString()} литров виски, красава. За все время ты бахнул ${drank.every.toFixed(1)} литров`;
   if (withHTML) return ctx.replyWithHTML(message);
   return ctx.reply(message);
 });
