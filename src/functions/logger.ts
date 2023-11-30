@@ -1,4 +1,4 @@
-import { appendFileSync } from "fs";
+import { appendFileSync, existsSync, statSync, writeFileSync } from "fs";
 import { logFile } from "../consts";
 
 export const logger = (message: string, from: string = 'none') => {
@@ -11,7 +11,10 @@ export const logger = (message: string, from: string = 'none') => {
     const date = now.getDay() + separator + now.getMonth() + separator + now.getFullYear() + 
       '] [' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 
-    message = `\n[${date}] ${from}: ${message}`;
+    if (!existsSync(logFile)) writeFileSync(logFile, '');
+    const stat = statSync(logFile);
+    if (!stat.size) message = `[${date}] ${from}: ${message}`;
+    else message = `\n[${date}] ${from}: ${message}`;
 
     return appendFileSync(logFile, message); // TODO: limit file size
 };
