@@ -28,8 +28,8 @@ bot.command("whiskey", async (ctx) => {
 
   if (ctx.message.from.username) message = "@" + ctx.message.from.username;
   else {
-      message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-      withHTML = 1;
+    message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+    withHTML = 1;
   };
 
   message =
