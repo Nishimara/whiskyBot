@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   telegraf:
-    specifier: ^4.15.1
-    version: 4.15.1
+    specifier: ^4.15.2
+    version: 4.15.2
 
 devDependencies:
   '@types/node':
@@ -175,8 +175,8 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
-  /telegraf@4.15.1:
-    resolution: {integrity: sha512-XbQUPvi/YqqSSD8EHswfoaq5rq3i51hZp26J49lZRGVA4msySgPSUSCAZwIOzCZTjPZyxsBxd4DM4bHLHF/oUw==}
+  /telegraf@4.15.2:
+    resolution: {integrity: sha512-HNsf4NFx9h5RAeNiAVmZUCor4Y+IKjysekfIpk10CO0jhVUo0eYKrJ91lDBw70g0skWKsu11gZTMAwbXorcnwQ==}
     engines: {node: ^12.20.0 || >=14.13.1}
     hasBin: true
     dependencies:
