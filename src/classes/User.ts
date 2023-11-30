@@ -1,6 +1,6 @@
 import { getPrisma } from "../functions/prismaClient";
 
-class User {
+export class User {
     private id: number;
     private amount: number;
     private lastTimeDrank: number;

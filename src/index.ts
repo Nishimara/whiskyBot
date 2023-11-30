@@ -3,6 +3,7 @@ import { whiskey } from "./methods/whiskey";
 import { config } from "./consts";
 import { logger } from "./functions/logger";
 import { Drank } from "./classes/Drank";
+import { User } from "./classes/User";
 
 const bot = new Telegraf(config.token);
 
@@ -18,7 +19,7 @@ bot.start((ctx) => {
 
 bot.command("whiskey", async (ctx) => {
   if (ctx.chat.type == "private") return 1;
-  const drank: Drank = whiskey();
+  const drank: Drank = whiskey(new User(ctx.message.from.id));
 
   let message;
   let withHTML;
