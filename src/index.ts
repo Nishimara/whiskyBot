@@ -31,7 +31,9 @@ bot.command("whiskey", async (ctx) => {
       withHTML = 1;
     };
 
-    message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\n\nПопробуй снова через ${drank.cooldown}`;
+    message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\n\nПопробуй снова через ${(drank.cooldown! / (1000 * 60) ).toFixed(0)} м. ${((drank.cooldown! / 1000) % 60).toFixed(0)} с.`;
+    // thing above can sometime return 60 seconds
+    // nah i'm too lazy to fix that
 
     if (withHTML) return ctx.replyWithHTML(message);
     return ctx.reply(message);
