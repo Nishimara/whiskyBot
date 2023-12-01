@@ -1,5 +1,4 @@
-import { Drank } from "../classes/Drank";
-import { User } from "../classes/User";
+import { Drank, User } from "../classes";
 import { cooldown } from "../consts";
 
 export const whiskey = (user: User): Drank => {

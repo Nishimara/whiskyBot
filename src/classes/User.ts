@@ -1,4 +1,4 @@
-import { getPrisma } from "../functions/prismaClient";
+import { getPrisma } from "../functions";
 
 export class User {
     private id: number;
@@ -31,7 +31,7 @@ export class User {
                         id: this.id,
                     },
                 })
-                .then((e) => {
+                .then(() => {
                     this.setLastTimeDrank(BigInt(Date.now()));
                 });
     }
@@ -50,7 +50,7 @@ export class User {
                     id: this.id,
                 },
             })
-            .then((e) => {
+            .then((e: any) => { // just to clarify: using 'any' type is bad and we should make interface for this thing
                 e.amount;
             });
     }
