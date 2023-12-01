@@ -1,10 +1,7 @@
 import { Telegraf } from "telegraf";
-import { whiskey } from "./methods/whiskey";
 import { config } from "./consts";
-import { logger } from "./functions/logger";
-import { Drank } from "./classes/Drank";
-import { User } from "./classes/User";
-import { getPrisma } from "./functions/prismaClient";
+import { logger, getPrisma, whiskey } from "./functions";
+import { Drank, User } from './classes'
 
 const bot = new Telegraf(config.token);
 
