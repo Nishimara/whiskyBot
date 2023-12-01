@@ -21,10 +21,20 @@ bot.command("whiskey", async (ctx) => {
   const user = new User(ctx.message.from.id)
   await user.init();
   const drank: Drank = whiskey(user);
-  //ТУТ ПЕРЕДЕЛАЙ Я НЕ ЕБУ КАК РАБОТАЕТ ХТМД И В ЦЕЛОМ МОРДА
-  if(drank.now == -1){
-    ctx.reply(`ты сосеш бибу ще ${drank.cooldown}`);
-    return 1;
+  if (drank.now == -1) {
+    let message;
+    let withHTML;
+
+    if (ctx.message.from.username) message = "@" + ctx.message.from.username;
+    else {
+      message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+      withHTML = 1;
+    };
+
+    message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\n\nПопробуй снова через ${drank.cooldown}`;
+
+    if (withHTML) return ctx.replyWithHTML(message);
+    return ctx.reply(message);
   }
 
   let message;
