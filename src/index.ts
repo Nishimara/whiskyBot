@@ -24,6 +24,11 @@ bot.command("whiskey", async (ctx) => {
   const user = new User(ctx.message.from.id)
   await user.init();
   const drank: Drank = whiskey(user);
+  //ТУТ ПЕРЕДЕЛАЙ Я НЕ ЕБУ КАК РАБОТАЕТ ХТМД И В ЦЕЛОМ МОРДА
+  if(drank.now == -1){
+    ctx.reply(`ты сосеш бибу ще ${drank.cooldown}`);
+    return 1;
+  }
 
   let message;
   let withHTML;
