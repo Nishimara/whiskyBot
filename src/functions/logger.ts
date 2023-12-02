@@ -1,3 +1,6 @@
+// TODO: get rid of this file cuz we have classes/Logger.ts
+// get rid means transport everthing from here to logger class
+
 import { appendFileSync, existsSync, statSync, writeFileSync } from "fs";
 import { logFile } from "../consts";
 

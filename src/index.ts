@@ -6,8 +6,8 @@ import { Drank, User, Logger } from "./classes";
 const bot = new Telegraf(config.token);
 const logger = new Logger();
 
-//короче logger.push("месаге"); делает лог новый в дб. Придумай чо нужно тут покрывать ато я вахуе че тут происходит уже
 bot.start((ctx) => {
+    // TODO: if a chat with new user then mark it in logs
     if (ctx.chat.type == "private") {
         ctx.reply(
             "Привет! Я бот который позволяет пить виски раз в час.\n\nДобавь меня в беседу и пропиши /whiskey"
@@ -26,6 +26,7 @@ bot.command("whiskey", async (ctx) => {
     const drank: Drank = whiskey(user);
 
     if (drank.now == -1) {
+        if (!drank.cooldown) return;
         let message;
         let withHTML;
 
@@ -37,10 +38,12 @@ bot.command("whiskey", async (ctx) => {
         }
 
         message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\n\nПопробуй снова через ${
-            Number((drank.cooldown! / (1000 * 60)).toFixed(0)) - 1
-        } м. ${((drank.cooldown! / 1000) % 60).toFixed(0)} с.`;
+            Number((drank.cooldown / (1000 * 60)).toFixed(0)) - 1
+        } м. ${((drank.cooldown / 1000) % 60).toFixed(0)} с.`;
         // thing above can sometime return 60 seconds
         // nah i'm too lazy to fix that
+
+        logger.push(`Cooldown triggered by ${ctx.message.from.id} with ms ${drank.cooldown}`);
 
         if (withHTML) return ctx.replyWithHTML(message);
         return ctx.reply(message);
@@ -54,12 +57,10 @@ bot.command("whiskey", async (ctx) => {
         message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
         withHTML = 1;
     }
+    message += ` ты выпил ${drank.now} литров виски, красава. За все время ты бахнул ${drank.every.toFixed(1)} литров`;
 
-    message =
-        message +
-        ` ты выпил ${drank.now.toString()} литров виски, красава. За все время ты бахнул ${drank.every.toFixed(
-            1
-        )} литров`;
+    logger.push(`Added ${drank.now} liters of whisky to ${ctx.message.from.id}`);
+    
     if (withHTML) return ctx.replyWithHTML(message);
     return ctx.reply(message);
 });
