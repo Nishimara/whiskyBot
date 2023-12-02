@@ -9,10 +9,11 @@ export class Logger {
 
     public push(message: string, from: number = 0): void {
         const separator = ".";
+        
+        const tz = Date.now() + 3600 * 3; // Set the time to UTC+3 Timezone
+        this.time = BigInt(tz);
 
-        this.time = BigInt(Date.now() + 3600 * 3);
-
-        const now = new Date(Date.now() + 3600 * 3); // Set the time to UTC+3 Timezone
+        const now = new Date(tz);
         
         let seconds: string | number;
         if (now.getSeconds().toString().length)
