@@ -30,7 +30,6 @@ export class Logger {
                     time: Number(this.time),
                     message: this.message,
                 },
-                // @ts-ignore
             })
             .then((e) => {
                 e.message;
