@@ -16,11 +16,11 @@ module.exports = {
             }
         }
     ],
+    "ignorePatterns": [".eslintrc.js"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": "./tsconfig.json"
+        "sourceType": "module"
     },
     "plugins": [
         "@typescript-eslint",
