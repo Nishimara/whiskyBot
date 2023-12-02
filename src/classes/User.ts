@@ -1,11 +1,11 @@
-import { getPrisma } from "../functions";
-import { Logger } from "./Logger";
+import { getPrisma } from '../functions';
+import { Logger } from './Logger';
 
-const logger: Logger = new Logger();
-
-export class User {
+const logger: Logger = new Logger();export class User {
     private id: number;
+
     private amount: number;
+
     private lastTimeDrank: BigInt;
 
     public getId(): number {
@@ -25,14 +25,14 @@ export class User {
             getPrisma()
                 .users.upsert({
                     create: {
-                        id: this.id,
+                        id: this.id
                     },
                     update: {
-                        amount: this.amount,
+                        amount: this.amount
                     },
                     where: {
-                        id: this.id,
-                    },
+                        id: this.id
+                    }
                 })
                 .then(() => {
                     logger.push(`Set new amout. Value: ${amount}, new amout: ${this.amount}`, this.id);
@@ -45,14 +45,14 @@ export class User {
         getPrisma()
             .users.upsert({
                 create: {
-                    id: this.id,
+                    id: this.id
                 },
                 update: {
-                    lastTimeDrank: BigInt(lastTimeDrank.toString()),
+                    lastTimeDrank: BigInt(lastTimeDrank.toString())
                 },
                 where: {
-                    id: this.id,
-                },
+                    id: this.id
+                }
             })
             .then((e) => {
                 e.amount;
@@ -63,20 +63,20 @@ export class User {
     public async init() {
         const data = await getPrisma().users.findUnique({
             where: {
-                id: this.id,
-            },
+                id: this.id
+            }
         });
         if (data) {
             this.amount = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;
-            logger.push(`Cast data from db to User class.`, this.id)
+            logger.push('Cast data from db to User class.', this.id);
         } else {
             const res = await getPrisma().users.create({
                 data: {
-                    id: this.id,
-                },
+                    id: this.id
+                }
             });
-            logger.push(`Create new user.`, this.id);
+            logger.push('Create new user.', this.id);
             this.init();
         }
     }
