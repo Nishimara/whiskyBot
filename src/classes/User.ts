@@ -1,7 +1,7 @@
 import { getPrisma } from "../functions";
 import { Logger } from "./Logger";
 
-let logger: Logger = new Logger();
+const logger: Logger = new Logger();
 
 export class User {
     private id: number;

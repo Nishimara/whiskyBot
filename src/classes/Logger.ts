@@ -4,8 +4,7 @@ export class Logger {
     private time: BigInt = BigInt(0);
     private message: string = "";
 
-    constructor() {
-    }
+    constructor() {}
 
     public push(message: string): void {
         this.time = BigInt(Date.now());
