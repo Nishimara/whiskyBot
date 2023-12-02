@@ -35,7 +35,7 @@ export class User {
                     },
                 })
                 .then(() => {
-                    logger.push(`Set new amout. UserID ${this.id}, Param "amount: " ${amount}, new amout: ${this.amount}`);
+                    logger.push(`Set new amout. Value: ${amount}, new amout: ${this.amount}`, this.id);
                     this.setLastTimeDrank(BigInt(Date.now()));
                 });
     }
@@ -57,7 +57,7 @@ export class User {
             // @ts-ignore
             .then((e) => {
                 e.amount;
-                logger.push(`Update lastTimeDrank. UserID ${this.id}, lastTimeDrank: ${this.lastTimeDrank}`);
+                logger.push(`Update lastTimeDrank. New lastTimeDrank: ${this.lastTimeDrank}`, this.id);
             });
     }
 
@@ -70,14 +70,14 @@ export class User {
         if (data) {
             this.amount = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;
-            logger.push(`Cast data from db to User class. UserID: ${this.id}, lastTimeDrank: ${this.lastTimeDrank}`)
+            logger.push(`Cast data from db to User class.`, this.id)
         } else {
             const res = await getPrisma().users.create({
                 data: {
                     id: this.id,
                 },
             });
-            logger.push(`Create new user. UserID: ${this.id}`);
+            logger.push(`Create new user.`, this.id);
             this.init();
         }
     }
