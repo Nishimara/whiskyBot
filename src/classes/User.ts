@@ -54,8 +54,8 @@ export class User {
                     id: this.id,
                 },
             })
-            //так блять почему у тя с эни только работает я ваще не ебу у меня норм пруфы в личку.
-            .then((e: any) => { // just to clarify: using 'any' type is bad and we should make interface for this thing
+            // @ts-ignore
+            .then((e) => {
                 e.amount;
                 logger.push(`Update lastTimeDrank. UserID ${this.id}, lastTimeDrank: ${this.lastTimeDrank}`);
             });

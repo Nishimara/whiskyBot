@@ -1,4 +1,4 @@
-import { getPrisma } from "../functions/prismaClient";
+import { getPrisma } from "../functions";
 
 export class Logger {
     private time: BigInt = BigInt(0);
@@ -15,6 +15,7 @@ export class Logger {
                 time: Number(this.time),
                 message: this.message
             }
+        // @ts-ignore
         }).then(e => {
             e.message;
         })
