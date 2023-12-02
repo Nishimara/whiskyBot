@@ -35,7 +35,7 @@ export class User {
                     },
                 })
                 .then(() => {
-                    logger.push(`Set new amout. Param "amount: " ${amount}, new amout: ${this.amount}`);
+                    logger.push(`Set new amout. UserID ${this.id}, Param "amount: " ${amount}, new amout: ${this.amount}`);
                     this.setLastTimeDrank(BigInt(Date.now()));
                 });
     }
