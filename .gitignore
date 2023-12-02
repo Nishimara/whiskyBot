@@ -3,4 +3,3 @@ build/
 tsconfig.tsbuildinfo
 config.json
 .env
-log.txt
