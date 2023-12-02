@@ -1,4 +1,7 @@
 import { getPrisma } from "../functions";
+import { Logger } from "./Logger";
+
+let logger: Logger = new Logger();
 
 export class User {
     private id: number;
@@ -32,6 +35,7 @@ export class User {
                     },
                 })
                 .then(() => {
+                    logger.push(`Set new amout. Param "amount: " ${amount}, new amout: ${this.amount}`);
                     this.setLastTimeDrank(BigInt(Date.now()));
                 });
     }
@@ -50,8 +54,10 @@ export class User {
                     id: this.id,
                 },
             })
+            //так блять почему у тя с эни только работает я ваще не ебу у меня норм пруфы в личку.
             .then((e: any) => { // just to clarify: using 'any' type is bad and we should make interface for this thing
                 e.amount;
+                logger.push(`Update lastTimeDrank. UserID ${this.id}, lastTimeDrank: ${this.lastTimeDrank}`);
             });
     }
 
@@ -64,12 +70,15 @@ export class User {
         if (data) {
             this.amount = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;
+            logger.push(`Cast data from db to User class. UserID: ${this.id}, lastTimeDrank: ${this.lastTimeDrank}`)
         } else {
             const res = await getPrisma().users.create({
                 data: {
                     id: this.id,
                 },
             });
+            logger.push(`Create new user. UserID: ${this.id}`);
+            this.init();
         }
     }
 
