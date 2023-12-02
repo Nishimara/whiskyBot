@@ -1,8 +1,7 @@
 import { Telegraf } from "telegraf";
 import { config } from "./consts";
-import { getPrisma, whiskey } from "./functions";
-import { Drank, User } from "./classes";
-import { Logger } from "./classes/Logger";
+import { whiskey } from "./functions";
+import { Drank, User, Logger } from "./classes";
 
 const bot = new Telegraf(config.token);
 const logger = new Logger();
