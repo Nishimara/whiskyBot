@@ -22,13 +22,13 @@ bot.command("whiskey", async (ctx) => {
 
     const user = new User(ctx.message.from.id);
     await user.init();
+    let message;
+    let withHTML;
 
     const drank: Drank = whiskey(user);
 
     if (drank.now == -1) {
         if (!drank.cooldown) return;
-        let message;
-        let withHTML;
 
         if (ctx.message.from.username)
             message = "@" + ctx.message.from.username;
@@ -48,9 +48,6 @@ bot.command("whiskey", async (ctx) => {
         if (withHTML) return ctx.replyWithHTML(message);
         return ctx.reply(message);
     }
-
-    let message;
-    let withHTML;
 
     if (ctx.message.from.username) message = "@" + ctx.message.from.username;
     else {
