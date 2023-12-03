@@ -13,11 +13,13 @@ export class Logger {
         const separator = '.';
         
         const tz = Date.now() + 3600 * 3; // Set the time to UTC+3 Timezone
+
         this.time = BigInt(tz);
 
         const now = new Date(tz);
         
         let seconds: string | number;
+
         if (now.getSeconds().toString().length < 2) seconds = '0' + now.getSeconds().toString();
         else seconds = now.getSeconds();
 

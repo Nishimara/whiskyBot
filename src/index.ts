@@ -5,6 +5,7 @@ import { Drank, User, Logger } from './classes';
 
 const bot = new Telegraf(config.token);
 const logger = new Logger();
+
 bot.start((ctx) => {
     // TODO: if a chat with new user then mark it in logs
     if (ctx.chat.type == 'private') {
@@ -20,11 +21,13 @@ bot.command('whiskey', async(ctx) => {
     if (ctx.chat.type == 'private') return 1;
 
     const user = new User(ctx.message.from.id);
+
     await user.init();
     let message;
     let withHTML;
 
     const drank: Drank = whiskey(user);
+
     if (drank.now == -1) {
         if (!drank.cooldown) return;
 
