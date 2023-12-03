@@ -18,8 +18,7 @@ export class Logger {
         const now = new Date(tz);
         
         let seconds: string | number;
-        if (now.getSeconds().toString().length)
-            seconds = '0' + now.getSeconds().toString();
+        if (now.getSeconds().toString().length < 2) seconds = '0' + now.getSeconds().toString();
         else seconds = now.getSeconds();
 
         this.date = `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] [${now.getHours()}:${now.getMinutes()}:${seconds}]: `;

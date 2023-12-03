@@ -4,7 +4,8 @@ import { whiskey } from './functions';
 import { Drank, User, Logger } from './classes';
 
 const bot = new Telegraf(config.token);
-const logger = new Logger();bot.start((ctx) => {
+const logger = new Logger();
+bot.start((ctx) => {
     // TODO: if a chat with new user then mark it in logs
     if (ctx.chat.type == 'private') {
         ctx.reply(
@@ -23,7 +24,8 @@ bot.command('whiskey', async(ctx) => {
     let message;
     let withHTML;
 
-    const drank: Drank = whiskey(user);    if (drank.now == -1) {
+    const drank: Drank = whiskey(user);
+    if (drank.now == -1) {
         if (!drank.cooldown) return;
 
         if (ctx.message.from.username)
@@ -39,7 +41,7 @@ bot.command('whiskey', async(ctx) => {
         // thing above can sometime return 60 seconds
         // nah i'm too lazy to fix that
 
-        logger.push(`Cooldown triggered by ${ctx.message.from.id} with ms ${drank.cooldown}`);
+        logger.push(`Cooldown triggered with ms ${drank.cooldown}`, ctx.message.from.id);
 
         if (withHTML) return ctx.replyWithHTML(message);
 
