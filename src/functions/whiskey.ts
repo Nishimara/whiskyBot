@@ -2,13 +2,13 @@ import { Drank, User } from '../classes';
 import { cooldown } from '../consts';
 
 export const whiskey = (user: User): Drank => {
-    let cd: number = Date.now() - Number(user.getLastTimeDrank());
+    const cd: number = Date.now() - Number(user.getLastTimeDrank());
 
     if (cd > cooldown) {
-        let now: number = parseFloat((Math.random() * 5 + 0.3).toFixed(1));
+        const now: number = parseFloat((Math.random() * 5 + 0.3).toFixed(1));
 
         user.setAmount(now);
-        let response = new Drank(now, user.getAmount());
+        const response = new Drank(now, user.getAmount());
 
         return response;
     } else {
