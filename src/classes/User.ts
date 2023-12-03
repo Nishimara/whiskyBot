@@ -1,7 +1,8 @@
 import { getPrisma } from '../functions';
 import { Logger } from './Logger';
 
-const logger: Logger = new Logger();export class User {
+const logger: Logger = new Logger();
+export class User {
     private id: number;
 
     private amount: number;
@@ -71,7 +72,7 @@ const logger: Logger = new Logger();export class User {
             this.lastTimeDrank = data.lastTimeDrank;
             logger.push('Cast data from db to User class.', this.id);
         } else {
-            const res = await getPrisma().users.create({
+            await getPrisma().users.create({
                 data: {
                     id: this.id
                 }

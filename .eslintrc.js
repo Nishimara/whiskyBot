@@ -17,6 +17,7 @@ module.exports = {
         }
     ],
     "ignorePatterns": [".eslintrc.js"],
+    "extends": "eslint:recommended",
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
