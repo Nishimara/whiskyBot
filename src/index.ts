@@ -55,7 +55,7 @@ bot.command('whiskey', async(ctx) => {
     }
     message += ` ты выпил ${drank.now} литров виски, красава. За все время ты бахнул ${drank.every.toFixed(1)} литров`;
 
-    logger.push(`Added ${drank.now} liters of whisky to ${ctx.message.from.id}`);
+    logger.push(`Added ${drank.now} liters of whisky`, ctx.message.from.id);
     
     if (withHTML) return ctx.replyWithHTML(message);
 
