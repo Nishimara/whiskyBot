@@ -31,6 +31,9 @@ devDependencies:
   eslint:
     specifier: ^8.55.0
     version: 8.55.0
+  eslint-plugin-diff:
+    specifier: ^2.0.3
+    version: 2.0.3(eslint@8.55.0)
   prisma:
     specifier: ^5.6.0
     version: 5.6.0
@@ -545,6 +548,15 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /eslint-plugin-diff@2.0.3(eslint@8.55.0):
+    resolution: {integrity: sha512-pkSwOTjPxqtplq+Ea+9i75QMdmJrItu6oxIG6EWY8bJ5veBNMUrp6Oti+5L6SW20FfjX+CmlZz+fyiWGG1POaQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      eslint: '>=6.7.0'
+    dependencies:
+      eslint: 8.55.0
     dev: true
 
   /eslint-scope@7.2.2:
