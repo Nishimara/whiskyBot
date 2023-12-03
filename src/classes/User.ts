@@ -2,6 +2,7 @@ import { getPrisma } from '../functions';
 import { Logger } from './Logger';
 
 const logger: Logger = new Logger();
+
 export class User {
     private id: number;
 
@@ -67,6 +68,7 @@ export class User {
                 id: this.id
             }
         });
+
         if (data) {
             this.amount = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;

@@ -49,7 +49,7 @@ module.exports = {
         "@stylistic/ts/object-curly-spacing": ["error", "always"],
         "@stylistic/ts/padding-line-between-statements": ["error", 
             { "blankLine": "always", "prev": "*", "next": "return"},
-            { "blankLine": "never", "prev": [ "const", "let", "var" ], "next": "*" },
+            { "blankLine": "always", "prev": [ "const", "let", "var" ], "next": "*" },
             { "blankLine": "any", "prev": [ "const", "let", "var" ], "next": [ "const", "let", "var" ] }
         ],
         "@stylistic/ts/quotes": ["error", "single"],
