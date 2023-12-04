@@ -12,8 +12,8 @@ dependencies:
     specifier: ^3.6.5
     version: 3.6.5
   telegraf:
-    specifier: ^4.15.2
-    version: 4.15.2
+    specifier: ^4.15.3
+    version: 4.15.3
 
 devDependencies:
   '@stylistic/eslint-plugin-ts':
@@ -1165,8 +1165,8 @@ packages:
       has-flag: 4.0.0
     dev: true
 
-  /telegraf@4.15.2:
-    resolution: {integrity: sha512-HNsf4NFx9h5RAeNiAVmZUCor4Y+IKjysekfIpk10CO0jhVUo0eYKrJ91lDBw70g0skWKsu11gZTMAwbXorcnwQ==}
+  /telegraf@4.15.3:
+    resolution: {integrity: sha512-pm2ZQAisd0YlUvnq6xdymDfoQR++8wTalw0nfw7Tjy0va+V/0HaBLzM8kMNid8pbbt7GHTU29lEyA5CAAr8AqA==}
     engines: {node: ^12.20.0 || >=14.13.1}
     hasBin: true
     dependencies:
