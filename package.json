@@ -16,7 +16,7 @@
   "dependencies": {
     "@prisma/client": "^5.6.0",
     "mysql2": "^3.6.5",
-    "telegraf": "^4.15.2"
+    "telegraf": "^4.15.3"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "^1.4.1",
