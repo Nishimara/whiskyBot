@@ -17,8 +17,12 @@ bot.start((ctx) => {
     }
 });
 
+bot.catch((err, ctx) => {
+    logger.push(String(err), ctx.from?.id); // possibly some highlighting to easily see errors in db?
+});
+
 bot.command('whiskey', async(ctx) => {
-    if (ctx.chat.type == 'private') return 1;
+    if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.message.from.id);
 
