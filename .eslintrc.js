@@ -59,6 +59,7 @@ module.exports = {
         "@stylistic/ts/space-infix-ops": ["error"],
         "@stylistic/ts/type-annotation-spacing": ["error", 
             { "before": false, "after": true }
-        ]
+        ],
+        "linebreak-style": ["error", "unix"]
     }
 }
