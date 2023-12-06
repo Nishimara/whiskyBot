@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
-import { config, ignoreErrorCodes } from './consts';
-import { whiskey } from './functions';
+import { config } from './consts';
+import { whiskey, handler } from './functions';
 import { Drank, User, Logger } from './classes';
 
 const bot = new Telegraf(config.token);
@@ -18,21 +18,7 @@ bot.start((ctx) => {
 });
 
 bot.catch((err, ctx) => {
-    interface iErr {
-        UserId?: number;
-        message?: string;
-    } // there has to be a better solution? rewrite
-    const error: iErr = err!;
-    const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/)); // this regex can be better
-    let isErr;
-
-    ignoreErrorCodes.forEach((elem) => {
-        if (elem === regex) isErr = true;
-    });
-
-    if (isErr) return;
-
-    logger.push(String(err), ctx.from?.id); // possibly some highlighting to easily see errors in db?
+    handler(err, ctx);
 });
 
 bot.command('whiskey', async(ctx) => {
