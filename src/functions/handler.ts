@@ -13,13 +13,15 @@ export const handler = (err: unknown, ctx: Context<Update>): void => {
 
     const error: iErr = err!;
     const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/)); // this regex can be better
-    let isErr;
+    let ignored;
 
     ignoreErrorCodes.forEach((elem) => {
-        if (elem === regex) isErr = true;
+        if (elem === regex) return ignored = 1;
+
+        return;
     });
 
-    if (isErr) return;
+    if (ignored) return;
 
     logger.push(String(err), ctx.from?.id); // possibly some highlighting to easily see errors in db?
 };
