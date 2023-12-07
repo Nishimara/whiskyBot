@@ -16,7 +16,7 @@ module.exports = {
             }
         }
     ],
-    "ignorePatterns": [".eslintrc.js"],
+    "ignorePatterns": [".eslintrc.js", "build/*"],
     "extends": [ "eslint:recommended" ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
