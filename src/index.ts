@@ -42,7 +42,7 @@ bot.command('whiskey', async(ctx) => {
             withHTML = 1;
         }
 
-        message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\n\nПопробуй снова через ${
+        message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито ${user.getAmount().toFixed(1)} литров.\n\nПопробуй снова через ${
             Number((drank.cooldown / (1000 * 60)).toFixed(0)) - 1
         } м. ${(drank.cooldown / 1000 % 60).toFixed(0)} с.`;
         // thing above can sometime return 60 seconds
