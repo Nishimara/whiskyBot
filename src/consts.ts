@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { Logger } from './classes';
 
 interface iConfig {
     token: string;
@@ -9,6 +10,7 @@ interface iRandom {
 }
 
 export const config: iConfig = JSON.parse(readFileSync('config.json', 'utf-8'));
+export const logger = new Logger();
 
 // Project settings
 export const cooldown: number = 60 * 60 * 1000; // in miliseconds
