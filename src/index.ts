@@ -43,7 +43,7 @@ bot.command('whiskey', async(ctx) => {
         }
 
         message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито ${
-            user.getAmount() % 1 === 0 ? user.getAmount().toFixed(0) : user.getAmount().toFixed(1)
+            Number((user.getAmount() % 1).toFixed(1)) == 0 ? user.getAmount().toFixed(0) : user.getAmount().toFixed(1)
         } литров.\n\nПопробуй снова через ${
             Number((drank.cooldown / (1000 * 60)).toFixed(0)) - 1
         } м. ${(drank.cooldown / 1000 % 60).toFixed(0)} с.`;
