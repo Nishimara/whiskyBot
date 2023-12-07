@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "ts-node ./src/index.ts",
     "start": "tsc && node ./build/index.js",
+    "start:nobuild": "node ./build/index.js",
     "build": "tsc",
     "lint": "eslint --fix . --ext .ts",
     "prisma:generate": "prisma generate"
