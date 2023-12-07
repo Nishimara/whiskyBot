@@ -1,10 +1,10 @@
 import { Telegraf } from 'telegraf';
-import { config } from './consts';
+import { config, logger } from './consts';
 import { whiskey, handler } from './functions';
-import { Drank, User, Logger } from './classes';
+import { Drank, User } from './classes';
+import { info } from './commands';
 
 const bot = new Telegraf(config.token);
-const logger = new Logger();
 
 bot.start((ctx) => {
     // TODO: if a chat with new user then mark it in logs
@@ -22,6 +22,7 @@ bot.catch((err, ctx) => {
 });
 
 bot.command('whiskey', async(ctx) => {
+    // TODO: move all this code to commands/whiskey.ts
     if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.message.from.id);
@@ -69,6 +70,10 @@ bot.command('whiskey', async(ctx) => {
     if (withHTML) return ctx.replyWithHTML(message);
 
     return ctx.reply(message);
+});
+
+bot.command('info', async(ctx) => {
+    await info(ctx);
 });
 
 bot.launch();

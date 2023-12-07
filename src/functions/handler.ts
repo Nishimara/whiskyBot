@@ -1,9 +1,6 @@
 import { Context } from 'telegraf';
 import { Update } from 'telegraf/typings/core/types/typegram';
-import { ignoreErrorCodes } from '../consts';
-import { Logger } from '../classes';
-
-const logger = new Logger();
+import { ignoreErrorCodes, logger } from '../consts';
 
 export const handler = (err: unknown, ctx: Context<Update>): void => {
     interface iErr {
