@@ -21,7 +21,7 @@ bot.catch((err, ctx) => {
     handler(err, ctx);
 });
 
-bot.command('whiskey', async(ctx) => {
+bot.command('whiskey', async (ctx) => {
     // TODO: move all this code to commands/whiskey.ts
     if (ctx.chat.type == 'private') return;
 
@@ -44,14 +44,19 @@ bot.command('whiskey', async(ctx) => {
         }
 
         message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито ${
-            Number((user.getAmount() % 1).toFixed(1)) == 0 ? user.getAmount().toFixed(0) : user.getAmount().toFixed(1)
-        } литров.\n\nПопробуй снова через ${
-            (drank.cooldown / (1000 * 60)).toString().match(/\d+/)
-        } м. ${(drank.cooldown / 1000 % 60).toFixed(0)} с.`;
+            Number((user.getAmount() % 1).toFixed(1)) == 0
+                ? user.getAmount().toFixed(0)
+                : user.getAmount().toFixed(1)
+        } литров.\n\nПопробуй снова через ${(drank.cooldown / (1000 * 60))
+            .toString()
+            .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60).toFixed(0)} с.`;
         // thing above can sometime return 60 seconds
         // nah i'm too lazy to fix that
 
-        logger.push(`Cooldown triggered with ms ${drank.cooldown}`, ctx.message.from.id);
+        logger.push(
+            `Cooldown triggered with ms ${drank.cooldown}`,
+            ctx.message.from.id
+        );
 
         if (withHTML) return ctx.replyWithHTML(message);
 
@@ -63,16 +68,20 @@ bot.command('whiskey', async(ctx) => {
         message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
         withHTML = 1;
     }
-    message += ` ты выпил ${drank.now} литров виски, красава. За все время ты бахнул ${drank.every.toFixed(1)} литров`;
+    message += ` ты выпил ${
+        drank.now
+    } литров виски, красава. За все время ты бахнул ${drank.every.toFixed(
+        1
+    )} литров`;
 
     logger.push(`Added ${drank.now} liters of whisky`, ctx.message.from.id);
-    
+
     if (withHTML) return ctx.replyWithHTML(message);
 
     return ctx.reply(message);
 });
 
-bot.command('info', async(ctx) => {
+bot.command('info', async (ctx) => {
     await info(ctx);
 });
 

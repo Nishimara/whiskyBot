@@ -13,7 +13,7 @@ export const handler = (err: unknown, ctx: Context<Update>): void => {
     let ignored;
 
     ignoreErrorCodes.forEach((elem) => {
-        if (elem === regex) return ignored = 1;
+        if (elem === regex) return (ignored = 1);
 
         return;
     });
