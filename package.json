@@ -11,6 +11,7 @@
     "start": "tsc && node ./build/index.js",
     "start:nobuild": "node ./build/index.js",
     "build": "tsc",
+    "watch": "tsc --watch",
     "lint": "eslint --fix . --ext .ts",
     "prettier": "prettier ./src/ --write",
     "format": "pnpm lint && pnpm prettier",
