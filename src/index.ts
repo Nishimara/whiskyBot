@@ -49,7 +49,9 @@ bot.command('whiskey', async (ctx) => {
                 : user.getAmount().toFixed(1)
         } литров.\n\nПопробуй снова через ${(drank.cooldown / (1000 * 60))
             .toString()
-            .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60).toFixed(0)} с.`;
+            .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60)
+            .toString()
+            .match(/\d+/)} с.`;
         // thing above can sometime return 60 seconds
         // nah i'm too lazy to fix that
 
