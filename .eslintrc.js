@@ -44,7 +44,7 @@ module.exports = {
         "@stylistic/ts/lines-around-comment": ["warn"],
         "@stylistic/ts/lines-between-class-members": ["error", "always"],
         "@stylistic/ts/member-delimiter-style": ["error"],
-        "@stylistic/ts/no-extra-parens": ["error", "all"],
+        "@stylistic/ts/no-extra-parens": ["error", "functions"],
         "@stylistic/ts/no-extra-semi": ["error"],
         "@stylistic/ts/object-curly-spacing": ["error", "always"],
         "@stylistic/ts/padding-line-between-statements": ["error", 
@@ -55,7 +55,11 @@ module.exports = {
         "@stylistic/ts/quotes": ["error", "single"],
         "@stylistic/ts/semi": ["error", "always"],
         "@stylistic/ts/space-before-blocks": ["error", "always"],
-        "@stylistic/ts/space-before-function-paren": ["error", "never"],
+        "@stylistic/ts/space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
         "@stylistic/ts/space-infix-ops": ["error"],
         "@stylistic/ts/type-annotation-spacing": ["error", 
             { "before": false, "after": true }
