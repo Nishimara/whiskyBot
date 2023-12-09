@@ -52,8 +52,6 @@ bot.command('whiskey', async (ctx) => {
             .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60)
             .toString()
             .match(/\d+/)} с.`;
-        // thing above can sometime return 60 seconds
-        // nah i'm too lazy to fix that
 
         logger.push(
             `Cooldown triggered with ms ${drank.cooldown}`,
