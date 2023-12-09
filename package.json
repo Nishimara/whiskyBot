@@ -12,6 +12,8 @@
     "start:nobuild": "node ./build/index.js",
     "build": "tsc",
     "lint": "eslint --fix . --ext .ts",
+    "prettier": "prettier ./src/ --write",
+    "format": "pnpm lint && pnpm prettier",
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
@@ -25,6 +27,8 @@
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.1.0",
     "prisma": "^5.6.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"

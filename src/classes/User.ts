@@ -21,23 +21,26 @@ export class User {
     }
 
     public setAmount(amount: number) {
-            this.amount += amount;
-            getPrisma()
-                .users.upsert({
-                    create: {
-                        id: this.id
-                    },
-                    update: {
-                        amount: this.amount
-                    },
-                    where: {
-                        id: this.id
-                    }
-                })
-                .then(() => {
-                    logger.push(`Set new amout. Value: ${amount}, new amout: ${this.amount}`, this.id);
-                    this.setLastTimeDrank(BigInt(Date.now()));
-                });
+        this.amount += amount;
+        getPrisma()
+            .users.upsert({
+                create: {
+                    id: this.id
+                },
+                update: {
+                    amount: this.amount
+                },
+                where: {
+                    id: this.id
+                }
+            })
+            .then(() => {
+                logger.push(
+                    `Set new amout. Value: ${amount}, new amout: ${this.amount}`,
+                    this.id
+                );
+                this.setLastTimeDrank(BigInt(Date.now()));
+            });
     }
 
     public setLastTimeDrank(lastTimeDrank: BigInt) {
@@ -56,7 +59,10 @@ export class User {
             })
             .then((e) => {
                 e.amount;
-                logger.push(`Update lastTimeDrank. New lastTimeDrank: ${this.lastTimeDrank}`, this.id);
+                logger.push(
+                    `Update lastTimeDrank. New lastTimeDrank: ${this.lastTimeDrank}`,
+                    this.id
+                );
             });
     }
 
