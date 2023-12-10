@@ -5,8 +5,10 @@ interface iConfig {
     token: string;
 }
 interface iRandom {
-    min: number;
-    max: number;
+    drankMin: number;
+    drankMax: number;
+    moneyMin: number;
+    moneyMax: number;
 }
 
 export const config: iConfig = JSON.parse(readFileSync('config.json', 'utf-8'));
@@ -18,6 +20,8 @@ export const ignoreErrorCodes: number[] = [
     400 // not enough rights to send messages into group
 ];
 export const random: iRandom = {
-    min: 0.3,
-    max: 5
+    drankMin: 0.3,
+    drankMax: 5,
+    moneyMin: 5,
+    moneyMax: 15
 };

@@ -5,11 +5,12 @@ export class Drank {
 
     public cooldown?: number;
 
-    constructor(now: number, every: number, cooldown?: number) {
+    public money: number;
+
+    constructor(now: number, every: number, money: number, cooldown?: number) {
         this.now = now;
         this.every = every;
-        if (cooldown) {
-            this.cooldown = cooldown;
-        }
+        this.money = money;
+        if (cooldown) this.cooldown = cooldown;
     }
 }

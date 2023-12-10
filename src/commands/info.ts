@@ -22,7 +22,7 @@ export const info = async (ctx: Context): Promise<void | object> => {
         Number((user.getAmount() % 1).toFixed(1)) == 0
             ? user.getAmount().toFixed(0)
             : user.getAmount().toFixed(1)
-    } литров`;
+    } литров\nМонет: ${user.getMoney()}`;
 
     if (withHTML) return ctx.replyWithHTML(message);
 
