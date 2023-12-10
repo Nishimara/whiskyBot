@@ -3,3 +3,4 @@ build/
 tsconfig.tsbuildinfo
 config.json
 .env
+.vsocde/
