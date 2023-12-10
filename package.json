@@ -17,10 +17,12 @@
     "format": "pnpm lint && pnpm prettier",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "prisma:pull": "prisma db pull"
+    "prisma:pull": "prisma db pull",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",
+    "husky": "^8.0.3",
     "mysql2": "^3.6.5",
     "telegraf": "^4.15.3"
   },
@@ -31,9 +33,13 @@
     "@typescript-eslint/parser": "^6.13.2",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
+    "lint-staged": "^15.2.0",
     "prettier": "3.1.0",
     "prisma": "^5.7.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.ts": "pnpm format"
   }
 }

@@ -10,7 +10,10 @@ export const whiskey = (user: User): Drank => {
         (Math.random() * random.drankMax + random.drankMin).toFixed(1)
     );
 
-    const money: number = Math.floor(Math.random() * (random.moneyMax - random.moneyMin + 1) + random.moneyMin);
+    const money: number = Math.floor(
+        Math.random() * (random.moneyMax - random.moneyMin + 1) +
+            random.moneyMin
+    );
 
     user.setAmount(now);
     user.setMoney(money);
