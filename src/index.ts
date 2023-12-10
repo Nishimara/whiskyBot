@@ -47,7 +47,10 @@ bot.command('whiskey', async (ctx) => {
             Number((user.getAmount() % 1).toFixed(1)) == 0
                 ? user.getAmount().toFixed(0)
                 : user.getAmount().toFixed(1)
-        } литров.\n\nПопробуй снова через ${(drank.cooldown / (1000 * 60))
+        } литров.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
+            drank.cooldown /
+            (1000 * 60)
+        )
             .toString()
             .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60)
             .toString()
@@ -68,13 +71,12 @@ bot.command('whiskey', async (ctx) => {
         message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
         withHTML = 1;
     }
-    message += ` ты выпил ${
-        drank.now
-    } литров виски, красава. За все время ты бахнул ${drank.every.toFixed(
-        1
-    )} литров`;
+    message += ` ты выпил ${drank.now} литров виски и заработал ${
+        drank.money
+    } монет, красава. За все время ты бахнул ${drank.every.toFixed(1)} литров`;
 
     logger.push(`Added ${drank.now} liters of whisky`, ctx.message.from.id);
+    logger.push(`Added ${drank.money} moneys`, ctx.message.from.id);
 
     if (withHTML) return ctx.replyWithHTML(message);
 

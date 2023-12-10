@@ -1,6 +1,6 @@
 {
   "name": "whiskyBot",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Telegram Bot",
   "main": "index.js",
   "repository": "git@github.com:HackerLacker/whiskyBot.git",
@@ -15,7 +15,9 @@
     "lint": "eslint --fix . --ext .ts",
     "prettier": "prettier ./src/ --write",
     "format": "pnpm lint && pnpm prettier",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:pull": "prisma db pull"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",
