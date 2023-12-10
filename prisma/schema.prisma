@@ -9,14 +9,14 @@ datasource db {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model users {
-  id            BigInt    @id @unique
-  amount        Float     @default(0.0)
-  lastTimeDrank BigInt    @default(0)
-  money         Int       @default(0)
+  id            BigInt @id @unique
+  amount        Float  @default(0)
+  lastTimeDrank BigInt @default(0)
+  money         Int    @default(0)
 }
 
 model logger {
-  id            BigInt    @id @default(autoincrement())
-  time          BigInt    
-  message       String
+  id      BigInt @id @default(autoincrement())
+  time    BigInt
+  message String
 }

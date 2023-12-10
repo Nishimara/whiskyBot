@@ -4,7 +4,7 @@ import { logger } from '../consts';
 export class User {
     private id: number;
 
-    private amount: number;
+    private drankAll: number;
 
     private lastTimeDrank: BigInt;
 
@@ -14,8 +14,8 @@ export class User {
         return this.id;
     }
 
-    public getAmount(): number {
-        return this.amount;
+    public getDrankAll(): number {
+        return this.drankAll;
     }
 
     public getLastTimeDrank(): BigInt {
@@ -26,15 +26,15 @@ export class User {
         return this.money;
     }
 
-    public setAmount(amount: number) {
-        this.amount += amount;
+    public setDrankAll(amount: number) {
+        this.drankAll += amount;
         getPrisma()
             .users.upsert({
                 create: {
                     id: this.id
                 },
                 update: {
-                    amount: this.amount
+                    amount: this.drankAll
                 },
                 where: {
                     id: this.id
@@ -42,7 +42,7 @@ export class User {
             })
             .then(() => {
                 logger.push(
-                    `Set new amout. Value: ${amount}, new amout: ${this.amount}`,
+                    `Set new amout. Value: ${amount}, new amout: ${this.drankAll}`,
                     this.id
                 );
                 this.setLastTimeDrank(BigInt(Date.now()));
@@ -99,7 +99,7 @@ export class User {
         });
 
         if (data) {
-            this.amount = data.amount;
+            this.drankAll = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;
             this.money = data.money;
             logger.push('Cast data from db to User class.', this.id);
@@ -116,7 +116,7 @@ export class User {
 
     constructor(id: number) {
         this.id = id;
-        this.amount = 0;
+        this.drankAll = 0;
         this.lastTimeDrank = BigInt(0);
         this.money = 0;
     }

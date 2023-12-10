@@ -3,7 +3,8 @@ import { User } from '../classes';
 
 export const info = async (ctx: Context): Promise<void | object> => {
     // specify a better type for ctx?
-    if (!ctx.chat || !ctx.message || !ctx.from) return; // костыль      ^^^
+    if (!ctx.chat || !ctx.message || !ctx.from) return; // костыль
+    //да не, безопастность 
     if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.from.id);
@@ -19,9 +20,9 @@ export const info = async (ctx: Context): Promise<void | object> => {
     }
 
     message += ` твоя статистика:\n\nВыпито в этом чате: ${
-        Number((user.getAmount() % 1).toFixed(1)) == 0
-            ? user.getAmount().toFixed(0)
-            : user.getAmount().toFixed(1)
+        Number((user.getDrankAll() % 1).toFixed(1)) == 0
+            ? user.getDrankAll().toFixed(0)
+            : user.getDrankAll().toFixed(1)
     } литров\nМонет: ${user.getMoney()}`;
 
     if (withHTML) return ctx.replyWithHTML(message);
