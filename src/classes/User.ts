@@ -42,7 +42,7 @@ export class User {
             })
             .then(() => {
                 logger.push(
-                    `Set new amout. Value: ${amount}, new amout: ${this.drankAll}`,
+                    `Set new amount. Value: ${amount}, new amount: ${this.drankAll}`,
                     this.id
                 );
                 this.setLastTimeDrank(BigInt(Date.now()));
@@ -87,7 +87,7 @@ export class User {
                 }
             })
             .then(() => {
-                logger.push(`Update money. New money: ${this.money}`, this.id);
+                logger.push(`Updated money. New money: ${this.money}`, this.id);
             });
     }
 

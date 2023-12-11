@@ -35,14 +35,14 @@ bot.command('whiskey', async (ctx) => {
     whiskey(user).then((drank: Drank) => {
         if (drank.drankNow == -1) {
             if (!drank.cooldown) return;
-    
+
             if (ctx.message.from.username)
                 message = '@' + ctx.message.from.username;
             else {
                 message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
                 withHTML = 1;
             }
-    
+
             message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито ${
                 Number((drank.drankAll % 1).toFixed(1)) == 0
                     ? drank.drankAll.toFixed(0)
@@ -55,34 +55,39 @@ bot.command('whiskey', async (ctx) => {
                 .match(/\d+/)} м. ${((drank.cooldown / 1000) % 60)
                 .toString()
                 .match(/\d+/)} с.`;
-    
+
             logger.push(
                 `Cooldown triggered with ms ${drank.cooldown}`,
                 ctx.message.from.id
             );
-    
+
             if (withHTML) ctx.replyWithHTML(message);
-    
+
             return ctx.reply(message);
         }
-    
-        if (ctx.message.from.username) message = '@' + ctx.message.from.username;
+
+        if (ctx.message.from.username)
+            message = '@' + ctx.message.from.username;
         else {
             message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
             withHTML = 1;
         }
         message += ` ты выпил ${drank.drankNow} литров виски и заработал ${
             drank.money
-        } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(1)} литров`;
-    
-        logger.push(`Added ${drank.drankNow} liters of whisky`, ctx.message.from.id);
+        } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(
+            1
+        )} литров`;
+
+        logger.push(
+            `Added ${drank.drankNow} liters of whisky`,
+            ctx.message.from.id
+        );
         logger.push(`Added ${drank.money} moneys`, ctx.message.from.id);
-    
+
         if (withHTML) return ctx.replyWithHTML(message);
-    
+
         return ctx.reply(message);
     });
-
 });
 
 bot.command('info', async (ctx) => {
