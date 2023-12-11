@@ -4,7 +4,7 @@ import { User } from '../classes';
 export const info = async (ctx: Context): Promise<void | object> => {
     // specify a better type for ctx?
     if (!ctx.chat || !ctx.message || !ctx.from) return; // костыль
-    //да не, безопастность 
+    //да не, безопасность
     if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.from.id);
