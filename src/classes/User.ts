@@ -66,7 +66,7 @@ export class User {
             .then((e) => {
                 e.amount;
                 logger.push(
-                    `Update lastTimeDrank. New lastTimeDrank: ${this.lastTimeDrank}`,
+                    `Updated lastTimeDrank. New lastTimeDrank: ${this.lastTimeDrank}`,
                     this.id
                 );
             });

@@ -17,7 +17,7 @@ module.exports = {
         }
     ],
     "ignorePatterns": [".eslintrc.js", "build/*"],
-    "extends": [ "eslint:recommended" ],
+    "extends": [ "eslint:recommended", "plugin:jest/recommended" ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -25,7 +25,8 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
-        "@stylistic/ts"
+        "@stylistic/ts",
+        "jest"
     ],
     "rules": {
         "@stylistic/ts/block-spacing": ["error", "always"],

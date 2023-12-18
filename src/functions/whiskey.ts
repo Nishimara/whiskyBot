@@ -8,16 +8,20 @@ export const whiskey = async (user: User): Promise<Drank> => {
         return new Drank(-1, user.getDrankAll(), 0, cooldown - cd);
 
     const now: number = parseFloat(
-        (Math.random() * random.drankMax + random.drankMin).toFixed(1)
+        (
+            Math.random() * (random.drankMax - random.drankMin) +
+            random.drankMin
+        ).toFixed(1)
     );
     const money: number = Math.floor(
-        Math.random() * random.moneyMax + random.moneyMin
+        Math.floor(
+            Math.random() * (random.moneyMax - random.moneyMin + 1) +
+                random.moneyMin
+        )
     );
 
     user.setDrankAll(now);
     user.setMoney(money);
 
-    const response = new Drank(now, user.getDrankAll(), money, cooldown - cd);
-
-    return response;
+    return new Drank(now, user.getDrankAll(), money, cooldown - cd);
 };
