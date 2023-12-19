@@ -19,11 +19,31 @@ export const info = async (ctx: Context): Promise<void | object> => {
         withHTML = 1;
     }
 
+    let ending: string;
+
+    switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+        case '1':
+            ending = '';
+            break;
+        case '2':
+            ending = 'а';
+            break;
+        case '3':
+            ending = 'а';
+            break;
+        case '4':
+            ending = 'а';
+            break;
+        default:
+            ending = 'ов';
+            break;
+    }
+
     message += ` твоя статистика:\n\nВыпито в этом чате: ${
         Number((user.getDrankAll() % 1).toFixed(1)) == 0
             ? user.getDrankAll().toFixed(0)
             : user.getDrankAll().toFixed(1)
-    } литров\nМонет: ${user.getMoney()}`;
+    } литр${ending}\nМонет: ${user.getMoney()}`;
 
     if (withHTML) return ctx.replyWithHTML(message);
 

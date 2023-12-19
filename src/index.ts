@@ -31,6 +31,25 @@ bot.command('whiskey', async (ctx) => {
     await user.init();
     let message: string;
     let withHTML: number;
+    let ending: string;
+
+    switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+        case '1':
+            ending = '';
+            break;
+        case '2':
+            ending = 'а';
+            break;
+        case '3':
+            ending = 'а';
+            break;
+        case '4':
+            ending = 'а';
+            break;
+        default:
+            ending = 'ов';
+            break;
+    }
 
     whiskey(user).then((drank: Drank) => {
         if (drank.drankNow == -1) {
@@ -47,7 +66,7 @@ bot.command('whiskey', async (ctx) => {
                 Number((drank.drankAll % 1).toFixed(1)) == 0
                     ? drank.drankAll.toFixed(0)
                     : drank.drankAll.toFixed(1)
-            } литров.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
+            } литр${ending}.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
                 drank.cooldown /
                 (1000 * 60)
             )
@@ -72,7 +91,28 @@ bot.command('whiskey', async (ctx) => {
             message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
             withHTML = 1;
         }
-        message += ` ты выпил ${drank.drankNow} литров виски и заработал ${
+
+        switch (Math.floor(drank.drankNow)) {
+            case 1:
+                ending = '';
+                break;
+            case 2:
+                ending = 'а';
+                break;
+            case 3:
+                ending = 'а';
+                break;
+            case 4:
+                ending = 'а';
+                break;
+            default:
+                ending = 'ов';
+                break;
+        }
+
+        message += ` ты выпил ${
+            drank.drankNow
+        } литр${ending} виски и заработал ${
             drank.money
         } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
