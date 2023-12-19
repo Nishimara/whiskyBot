@@ -116,7 +116,7 @@ bot.command('whiskey', async (ctx) => {
             drank.money
         } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
-        )} литров`;
+        )} литр${ending}`;
 
         logger.push(
             `Added ${drank.drankNow} liters of whisky`,
