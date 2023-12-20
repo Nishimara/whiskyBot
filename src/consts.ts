@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import { Logger } from './classes';
 
 interface iConfig {
@@ -11,7 +10,8 @@ interface iRandom {
     moneyMax: number;
 }
 
-export const config: iConfig = JSON.parse(readFileSync('config.json', 'utf-8'));
+// eslint-disable-next-line no-undef
+export const config: iConfig = await Bun.file('config.json').json();
 export const logger: Logger = new Logger();
 
 // Project settings
