@@ -135,6 +135,7 @@ bot.command('info', async (ctx) => {
 });
 
 bot.launch();
+console.log('Started!');
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
