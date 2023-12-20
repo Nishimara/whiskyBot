@@ -12,30 +12,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 21.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        bun-version: 
+          - latest
 
     steps:
     - name: Checkout code 
       uses: actions/checkout@v4
       
-    - name: Pnpm-setup
-      uses: pnpm/action-setup@v2
+    - name: Bun-setup
+      uses: oven-sh/setup-bun@v1
       with:
-        version: next-8
-        standalone: true
+        bun-version: ${{ matrix.bun-version }}
 
     - name: Install packages
-      run: pnpm install --frozen-lockfile
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
+      run: bun install --frozen-lockfile
         
     - name: Build  
-      run: pnpm run build
+      run: bun run build
 
     - name: Tests
-      run: pnpm test
+      run: bun test
