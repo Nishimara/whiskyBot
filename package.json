@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "1.5.1",
+    "@telegraf/types": "6.9.1",
     "@types/jest": "29.5.11",
     "@typescript-eslint/eslint-plugin": "6.15.0",
     "@typescript-eslint/parser": "6.15.0",
