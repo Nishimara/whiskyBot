@@ -1,10 +1,10 @@
+import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User } from '../classes';
 
-export const info = async (ctx: Context): Promise<void | object> => {
-    // specify a better type for ctx?
-    if (!ctx.chat || !ctx.message || !ctx.from) return; // костыль
-    //да не, безопасность
+export const info = async (
+    ctx: Context<Update.MessageUpdate<Message.TextMessage>>
+): Promise<void | object> => {
     if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.from.id);
