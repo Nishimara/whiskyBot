@@ -1,4 +1,4 @@
-import { User } from '../../classes/User';
+import { User } from '../../src/classes/User';
 
 it('User', () => {
     const user = new User(1);
