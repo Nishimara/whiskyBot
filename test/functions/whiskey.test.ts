@@ -1,7 +1,7 @@
-import { Drank } from '../../classes/Drank';
-import { User } from '../../classes/User';
-import { whiskey } from '../../functions/whiskey';
-import { random, cooldown } from '../../consts';
+import { Drank } from '../../src/classes/Drank';
+import { User } from '../../src/classes/User';
+import { whiskey } from '../../src/functions/whiskey';
+import { random, cooldown } from '../../src/consts';
 
 class MockUser extends User {
     public setDrankAll(): void {}

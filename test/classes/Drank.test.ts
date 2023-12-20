@@ -1,4 +1,4 @@
-import { Drank } from '../../classes/Drank';
+import { Drank } from '../../src/classes/Drank';
 
 it('Drank', () => {
     const drank = new Drank(0, 1, 2, 3);
