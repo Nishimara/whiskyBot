@@ -19,12 +19,22 @@ export class Logger {
         const now = new Date(tz);
 
         let seconds: string | number;
+        let minutes: string | number;
+        let hours: string | number;
 
         if (now.getSeconds().toString().length < 2)
             seconds = '0' + now.getSeconds().toString();
         else seconds = now.getSeconds();
 
-        this.date = `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] [${now.getHours()}:${now.getMinutes()}:${seconds}]: `;
+        if (now.getMinutes().toString().length < 2)
+            minutes = '0' + now.getMinutes().toString();
+        else minutes = now.getMinutes();
+
+        if (now.getHours().toString().length < 2)
+            hours = '0' + now.getHours().toString();
+        else hours = now.getHours();
+
+        this.date = `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] [${hours}:${minutes}:${seconds}]: `;
 
         this.message = `${this.date} UserId: ${
             from == 0 ? 'none' : from
