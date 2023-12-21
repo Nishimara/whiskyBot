@@ -1,6 +1,4 @@
 node_modules/
 build/
 tsconfig.tsbuildinfo
-config.json
-.env
 .vscode/
