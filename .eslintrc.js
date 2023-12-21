@@ -28,6 +28,9 @@ module.exports = {
         "@stylistic/ts",
         "jest"
     ],
+    "globals": {
+        "Bun": false,
+    },
     "rules": {
         "@stylistic/ts/block-spacing": ["error", "always"],
         "@stylistic/ts/brace-style": ["error", "1tbs"],

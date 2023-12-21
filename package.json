@@ -2,7 +2,7 @@
   "name": "whiskyBot",
   "version": "0.1.0",
   "description": "Telegram Bot",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "git@github.com:HackerLacker/whiskyBot.git",
   "author": "Vladislav <ghoulyaev@gmail.com>",
   "license": "MIT",
@@ -46,7 +46,6 @@
     "prettier": "3.1.1",
     "prisma": "5.7.1",
     "ts-jest": "29.1.1",
-    "ts-node": "10.9.2",
     "typescript": "5.3.3"
   },
   "lint-staged": {
