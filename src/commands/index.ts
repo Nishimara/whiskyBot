@@ -1,2 +1,5 @@
-export { info } from './info';
-export { whiskeyCommand } from './whiskey';
+import { info } from './info';
+import { whiskeyCommand } from './whiskey';
+
+export { info };
+export { whiskeyCommand };

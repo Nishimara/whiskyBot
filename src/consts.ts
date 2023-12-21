@@ -1,8 +1,5 @@
 import { Logger } from './classes';
 
-interface iConfig {
-    token: string;
-}
 interface iRandom {
     drankMin: number;
     drankMax: number;
@@ -10,9 +7,7 @@ interface iRandom {
     moneyMax: number;
 }
 
-// eslint-disable-next-line no-undef
-export const config: iConfig = await Bun.file('config.json').json();
-export const logger: Logger = new Logger();
+export const logger = new Logger();
 
 // Project settings
 export const cooldown: number = 60 * 60 * 1000; // in miliseconds

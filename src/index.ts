@@ -1,9 +1,8 @@
 import { Telegraf } from 'telegraf';
-import { config } from './consts';
 import { handler } from './functions';
 import { info, whiskeyCommand } from './commands';
 
-const bot = new Telegraf(config.token);
+const bot = new Telegraf(Bun.env.TELEGRAM_TOKEN!);
 
 bot.start((ctx) => {
     // TODO: if a chat with new user then mark it in logs

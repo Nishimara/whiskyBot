@@ -1,3 +1,7 @@
-export { getPrisma } from './prismaClient';
-export { whiskey } from './whiskey';
-export { handler } from './handler';
+import { getPrisma } from './prismaClient';
+import { whiskey } from './whiskey';
+import { handler } from './handler';
+
+export { getPrisma };
+export { whiskey };
+export { handler };
