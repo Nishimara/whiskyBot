@@ -18,25 +18,18 @@ export class Logger {
 
         const now = new Date(tz);
 
-        const format = new Map<string, number | string>();
+        const format = new Map<string, string>();
 
         format
-            .set('seconds', now.getSeconds())
-            .set('minutes', now.getMinutes())
-            .set('hours', now.getHours());
-
-        if (now.getSeconds().toString().length < 2)
-            format.set('seconds', '0' + format.get('seconds'));
-
-        if (now.getMinutes().toString().length < 2)
-            format.set('minutes', '0' + format.get('minutes'));
-
-        if (now.getHours().toString().length < 2)
-            format.set('hours', '0' + format.get('hours'));
+            .set('seconds', now.getSeconds().toString().padStart(2, '0'))
+            .set('minutes', now.getMinutes().toString().padStart(2, '0'))
+            .set('hours', now.getHours().toString().padStart(2, '0'))
+            .set('day', now.getDate().toString().padStart(2, '0'))
+            .set('month', (now.getMonth() + 1).toString().padStart(2, '0'));
 
         this.date =
             // prettier-ignore
-            `[${now.getDate()}${separator}${now.getMonth() + 1}${separator}${now.getFullYear()}] ` +
+            `[${format.get('day')}${separator}${format.get('month')}${separator}${now.getFullYear()}] ` +
             // prettier-ignore
             `[${format.get('hours')}:${format.get('minutes')}:${format.get('seconds')}]: `;
 
