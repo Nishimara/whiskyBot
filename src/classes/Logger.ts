@@ -20,9 +20,10 @@ export class Logger {
 
         const format = new Map<string, number | string>();
 
-        format.set('seconds', now.getSeconds());
-        format.set('minutes', now.getMinutes());
-        format.set('hours', now.getHours());
+        format
+            .set('seconds', now.getSeconds())
+            .set('minutes', now.getMinutes())
+            .set('hours', now.getHours());
 
         if (now.getSeconds().toString().length < 2)
             format.set('seconds', '0' + format.get('seconds'));
