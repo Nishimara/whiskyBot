@@ -1,18 +1,13 @@
 version: 2
 updates:
-# Dependabot doesn't really support bun and specially bun.lockb
-# Currently updating packages will be manualy
-# And when dependabot will add support for bun
-# We will uncomment next lines
-
-# - package-ecosystem: "npm"
-#   directory: "/"
-#   schedule:
-#     interval: "weekly"
-#   groups:
-#     dependencies:
-#       patterns:
-#         - "*"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
