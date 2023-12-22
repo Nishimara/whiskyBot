@@ -18,23 +18,25 @@ export class Logger {
 
         const now = new Date(tz);
 
-        let seconds: string | number;
-        let minutes: string | number;
-        let hours: string | number;
+        const format = new Map<string, number | string>();
+
+        format.set('seconds', now.getSeconds());
+        format.set('minutes', now.getMinutes());
+        format.set('hours', now.getHours());
 
         if (now.getSeconds().toString().length < 2)
-            seconds = '0' + now.getSeconds().toString();
-        else seconds = now.getSeconds();
+            format.set('seconds', '0' + format.get('seconds'));
 
         if (now.getMinutes().toString().length < 2)
-            minutes = '0' + now.getMinutes().toString();
-        else minutes = now.getMinutes();
+            format.set('minutes', '0' + format.get('minutes'));
 
         if (now.getHours().toString().length < 2)
-            hours = '0' + now.getHours().toString();
-        else hours = now.getHours();
+            format.set('hours', '0' + format.get('hours'));
 
-        this.date = `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] [${hours}:${minutes}:${seconds}]: `;
+        this.date =
+            `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] ` +
+            // prettier-ignore
+            `[${format.get('hours')}:${format.get('minutes')}:${format.get('seconds')}]: `;
 
         this.message = `${this.date} UserId: ${
             from == 0 ? 'none' : from
