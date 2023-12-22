@@ -35,7 +35,8 @@ export class Logger {
             format.set('hours', '0' + format.get('hours'));
 
         this.date =
-            `[${now.getDay()}${separator}${now.getMonth()}${separator}${now.getFullYear()}] ` +
+            // prettier-ignore
+            `[${now.getDate()}${separator}${now.getMonth() + 1}${separator}${now.getFullYear()}] ` +
             // prettier-ignore
             `[${format.get('hours')}:${format.get('minutes')}:${format.get('seconds')}]: `;
 
