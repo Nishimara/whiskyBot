@@ -14,6 +14,12 @@ module.exports = {
             "parserOptions": {
                 "sourceType": "script"
             }
+        },
+        {
+            "files": ["test/**/*.test.ts"],
+            "env": {
+                "jest": true
+            }
         }
     ],
     "ignorePatterns": [".eslintrc.js", "build/*"],
