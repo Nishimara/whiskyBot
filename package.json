@@ -1,5 +1,5 @@
 {
-  "name": "whiskyBot",
+  "name": "whiskybot",
   "version": "0.1.0",
   "description": "Telegram Bot",
   "main": "index.ts",
