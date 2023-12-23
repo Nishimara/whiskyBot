@@ -5,7 +5,6 @@ import { info, whiskeyCommand } from './commands';
 const bot = new Telegraf(Bun.env.TELEGRAM_TOKEN!);
 
 bot.start((ctx) => {
-    // TODO: if a chat with new user then mark it in logs
     if (ctx.chat.type == 'private') {
         ctx.reply(
             'Привет! Я бот который позволяет пить виски раз в час.\n\nДобавь меня в беседу и пропиши /whiskey'
