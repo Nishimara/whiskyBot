@@ -1,18 +1,15 @@
 {
   "name": "whiskybot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Telegram Bot",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "repository": "git@github.com:HackerLacker/whiskyBot.git",
   "author": "Vladislav <ghoulyaev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:nobun": "tsc && node ./build/index.js",
     "start": "bun ./src/index.ts",
-    "start:nobuild": "node ./build/index.js",
     "build": "tsc",
-    "watch": "bun build ./src/index.ts --outdir ./build/ --watch",
-    "watch:nobun": "tsc --watch",
+    "watch": "bun --watch ./src/index.ts",
     "lint": "eslint --fix . --ext .ts",
     "prettier": "prettier ./src/ --write",
     "format": "bun lint && bun prettier",
@@ -21,9 +18,7 @@
     "prisma:pull": "prisma db pull",
     "prepare": "husky install",
     "test": "bun test",
-    "test:nobun": "jest",
-    "test:watch": "bun test --watch",
-    "test:nobun:watch": "jest --watch"
+    "test:watch": "bun test --watch"
   },
   "dependencies": {
     "@prisma/client": "5.7.1",
