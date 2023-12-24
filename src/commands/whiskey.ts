@@ -53,7 +53,7 @@ export const whiskeyCommand = async (
                 Number((drank.drankAll % 1).toFixed(1)) == 0
                     ? drank.drankAll.toFixed(0)
                     : drank.drankAll.toFixed(1)
-            } литр${endingAll}.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
+            } литр${endingAll}.\nНафармлено ${user.getMoney()} вискоинов.\n\nПопробуй снова через ${(
                 drank.cooldown /
                 (1000 * 60)
             )
@@ -127,7 +127,7 @@ export const whiskeyCommand = async (
             drank.drankNow
         } литр${ending} виски и заработал ${
             drank.money
-        } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(
+        } вискоинов, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
         )} литр${endingAll}`;
 
