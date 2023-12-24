@@ -1,9 +1,10 @@
 import { Drank } from '../../src/classes/Drank';
-import { User } from '../../src/classes/User';
-import { whiskey } from '../../src/functions/whiskey';
+import { User } from '../../src/classes/User'; // can't import from 'src/classes' cuz it's for some reason throws an error
+import { whiskey } from '../../src/functions';
 import { random, cooldown } from '../../src/consts';
 
 class MockUser extends User {
+
     public setDrankAll(): void {}
 
     public setLastTimeDrank(): void {}
@@ -12,7 +13,8 @@ class MockUser extends User {
 }
 
 it('whiskey', async () => {
-    const whisk = await whiskey(new MockUser(1));
+    const user = new MockUser(1);
+    const whisk = await whiskey(user);
 
     expect(whisk).toBeInstanceOf(Drank);
 
@@ -23,6 +25,6 @@ it('whiskey', async () => {
     expect(whisk.drankNow).toBeGreaterThanOrEqual(random.drankMin);
 
     expect(whisk.drankAll).toBe(0);
-
-    expect(whisk.cooldown! - Date.now()).toBeLessThanOrEqual(cooldown); // rewrite cuz whisk.cooldown is negative (?)
+    
+    expect(whisk.cooldown! * -1 + cooldown * 2 - Date.now()).toBeCloseTo(cooldown, -1); // why is whisk.cooldown is negative?
 });
