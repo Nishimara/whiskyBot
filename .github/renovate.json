@@ -1,0 +1,14 @@
+{
+    "extends": [
+      "config:base",
+      ":timezone(Europe/Moscow)"
+    ],
+    "rebaseWhen": "conflicted",
+    "packageRules": [
+      {
+        "groupName": "dependencies",
+        "matchDepTypes": ["dependencies", "devDependencies"],
+        "schedule": ["at 7am on monday"]
+      }
+    ]
+}
