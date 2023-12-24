@@ -19,7 +19,6 @@ export const gamba = async (
         return ctx.reply(
             `Ваша ставка должна быть больше ${gambaRules.gambaMin} вискоинов!`
         );
-    console.log(user.getMoney());
     if (user.getMoney() < Number(num[0]))
         return ctx.reply('У вас недостаточно вискоинов!');
 
