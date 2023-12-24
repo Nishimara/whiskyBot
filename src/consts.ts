@@ -6,6 +6,10 @@ interface iRandom {
     moneyMin: number;
     moneyMax: number;
 }
+interface iGamba {
+    gambaMin: number;
+    gambaCoef: number;
+}
 
 export const logger = new Logger();
 
@@ -19,4 +23,9 @@ export const random: iRandom = {
     drankMax: 5,
     moneyMin: 5,
     moneyMax: 15
+};
+
+export const gambaRules: iGamba = {
+    gambaMin: 10,
+    gambaCoef: 70
 };
