@@ -17,6 +17,9 @@ export const whiskeyCommand = async (
     let ending: string;
 
     switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+        case '0':
+            ending = 'ов';
+            break;
         case '1':
             ending = '';
             break;
@@ -76,6 +79,9 @@ export const whiskeyCommand = async (
         }
 
         switch (Math.floor(drank.drankNow)) {
+            case 0:
+                ending = 'ов';
+                break;
             case 1:
                 ending = '';
                 break;
