@@ -15,31 +15,32 @@ export const whiskeyCommand = async (
     let message: string;
     let withHTML: number;
     let ending: string;
-
-    switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
-        case '0':
-            ending = 'ов';
-            break;
-        case '1':
-            ending = '';
-            break;
-        case '2':
-            ending = 'а';
-            break;
-        case '3':
-            ending = 'а';
-            break;
-        case '4':
-            ending = 'а';
-            break;
-        default:
-            ending = 'ов';
-            break;
-    }
+    let endingAll: string;
 
     whiskey(user).then((drank: Drank) => {
         if (drank.drankNow == -1) {
             if (!drank.cooldown) return;
+
+            switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+                case '0':
+                    endingAll = 'ов';
+                    break;
+                case '1':
+                    endingAll = '';
+                    break;
+                case '2':
+                    endingAll = 'ов';
+                    break;
+                case '3':
+                    endingAll = 'а';
+                    break;
+                case '4':
+                    endingAll = 'а';
+                    break;
+                default:
+                    endingAll = 'ов';
+                    break;
+            }
 
             if (ctx.message.from.username)
                 message = '@' + ctx.message.from.username;
@@ -52,7 +53,7 @@ export const whiskeyCommand = async (
                 Number((drank.drankAll % 1).toFixed(1)) == 0
                     ? drank.drankAll.toFixed(0)
                     : drank.drankAll.toFixed(1)
-            } литр${ending}.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
+            } литр${endingAll}.\nНафармлено ${user.getMoney()} монет.\n\nПопробуй снова через ${(
                 drank.cooldown /
                 (1000 * 60)
             )
@@ -70,6 +71,29 @@ export const whiskeyCommand = async (
 
             return ctx.reply(message);
         }
+
+        switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+            case '0':
+                endingAll = 'ов';
+                break;
+            case '1':
+                endingAll = '';
+                break;
+            case '2':
+                endingAll = 'ов';
+                break;
+            case '3':
+                endingAll = 'а';
+                break;
+            case '4':
+                endingAll = 'а';
+                break;
+            default:
+                endingAll = 'ов';
+                break;
+        }
+
+        console.log(Math.floor(user.getDrankAll()));
 
         if (ctx.message.from.username)
             message = '@' + ctx.message.from.username;
@@ -105,7 +129,7 @@ export const whiskeyCommand = async (
             drank.money
         } монет, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
-        )} литр${ending}`;
+        )} литр${endingAll}`;
 
         logger.push(
             `Added ${drank.drankNow} liters of whisky`,
