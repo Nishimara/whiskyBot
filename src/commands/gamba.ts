@@ -14,14 +14,14 @@ export const gamba = async (
     await user.init();
 
     if (num == null)
-        return ctx.reply('Введите количество монет! Пример: /gamba 10');
+        return ctx.reply('Введите количество вискоинов! Пример: /gamba 10');
     if (Number(num[0]) < gambaRules.gambaMin)
         return ctx.reply(
-            `Ваша ставка должна быть больше ${gambaRules.gambaMin} монет!`
+            `Ваша ставка должна быть больше ${gambaRules.gambaMin} вискоинов!`
         );
     console.log(user.getMoney());
     if (user.getMoney() < Number(num[0]))
-        return ctx.reply('У вас недостаточно монет!');
+        return ctx.reply('У вас недостаточно вискоинов!');
 
     const goodVariants: number[] = [1, 22, 43, 64];
     const dice = await ctx.sendDice({
@@ -58,14 +58,14 @@ export const gamba = async (
                     message +
                         ` Ты проиграл ${
                             num[0]
-                        } монет :(\nТвой счет: ${user.getMoney()} монет`
+                        } вискоинов :(\nТвой счет: ${user.getMoney()} вискоинов`
                 );
 
             return ctx.reply(
                 message +
                     ` Ты проиграл ${
                         num[0]
-                    } монет :(\nТвой счет: ${user.getMoney()} монет`
+                    } вискоинов :(\nТвой счет: ${user.getMoney()} вискоинов`
             );
         }
 
@@ -90,14 +90,14 @@ export const gamba = async (
                 message +
                     ` Ты выйграл ${
                         Number(num[0]) * gambaRules.gambaCoef
-                    } монет!\nТвой счет: ${user.getMoney()} монет`
+                    } вискоинов!\nТвой счет: ${user.getMoney()} вискоинов`
             );
 
         return ctx.reply(
             message +
                 ` Ты выйграл ${
                     Number(num[0]) * gambaRules.gambaCoef
-                } монет!\nТвой счет: ${user.getMoney()} монет`
+                } вискоинов!\nТвой счет: ${user.getMoney()} вискоинов`
         );
     }, 1000 * 2);
 };

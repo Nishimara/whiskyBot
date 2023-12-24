@@ -22,11 +22,14 @@ export const info = async (
     let ending: string;
 
     switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+        case '0':
+            ending = 'ов';
+            break;
         case '1':
             ending = '';
             break;
         case '2':
-            ending = 'а';
+            ending = 'ов';
             break;
         case '3':
             ending = 'а';
@@ -43,7 +46,7 @@ export const info = async (
         Number((user.getDrankAll() % 1).toFixed(1)) == 0
             ? user.getDrankAll().toFixed(0)
             : user.getDrankAll().toFixed(1)
-    } литр${ending}\nМонет: ${user.getMoney()}`;
+    } литр${ending}\nВискоинов: ${user.getMoney()}`;
 
     if (withHTML) return ctx.replyWithHTML(message);
 
