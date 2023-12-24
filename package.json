@@ -18,7 +18,7 @@
     "prisma:pull": "prisma db pull",
     "prepare": "husky install",
     "test": "bun test",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun --watch test"
   },
   "dependencies": {
     "@prisma/client": "5.7.1",
