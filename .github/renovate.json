@@ -9,6 +9,7 @@
       {
         "groupName": "dependencies",
         "matchDepTypes": ["dependencies", "devDependencies"],
+        "automerge": true,
         "schedule": ["at 7am on monday"]
       }
     ]
