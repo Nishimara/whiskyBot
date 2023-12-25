@@ -16,7 +16,8 @@ export const logger = new Logger();
 // Project settings
 export const cooldown: number = 60 * 60 * 1000; // in miliseconds
 export const ignoreErrorCodes: number[] = [
-    400 // not enough rights to send messages into group
+    400, // not enough rights to send messages into group
+    429 // too many requests
 ];
 export const random: iRandom = {
     drankMin: 0.3,
@@ -27,5 +28,5 @@ export const random: iRandom = {
 
 export const gambaRules: iGamba = {
     gambaMin: 10,
-    gambaCoef: 70
+    gambaCoef: 50
 };

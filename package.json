@@ -1,6 +1,6 @@
 {
   "name": "whiskybot",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Telegram Bot",
   "main": "src/index.ts",
   "repository": "git@github.com:HackerLacker/whiskyBot.git",
