@@ -22,15 +22,14 @@ export const gamba = async (
     if (user.getMoney() < Number(num[0]))
         return ctx.reply('У вас недостаточно вискоинов!');
 
-    const goodVariants: number[] = [1, 22, 43, 64];
     const dice = await ctx.sendDice({
         emoji: '🎰'
     });
 
-    setTimeout(() => {
+    setTimeout(async () => {
         let isWin: number = 0;
 
-        goodVariants.forEach((e) => {
+        [1, 22, 43, 64].forEach((e) => {
             if (e == dice.dice.value) return (isWin = 1);
 
             return;
@@ -39,6 +38,10 @@ export const gamba = async (
         let withHTML: number = 0;
 
         if (!isWin) {
+            // until stack for individual user is not implemented yet
+            // we do this instead
+            await user.init();
+
             user.setMoney(Number(num[0]) * -1);
             if (ctx.message.from.username)
                 message = '@' + ctx.message.from.username;
@@ -68,6 +71,7 @@ export const gamba = async (
             );
         }
 
+        await user.init();
         user.setMoney(Number(num[0]) * gambaRules.gambaCoef);
 
         if (ctx.message.from.username)

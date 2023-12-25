@@ -93,8 +93,6 @@ export const whiskeyCommand = async (
                 break;
         }
 
-        console.log(Math.floor(user.getDrankAll()));
-
         if (ctx.message.from.username)
             message = '@' + ctx.message.from.username;
         else {
