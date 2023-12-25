@@ -102,5 +102,5 @@ export const gamba = async (
                     Number(num[0]) * gambaRules.gambaCoef
                 } вискоинов!\nТвой счет: ${user.getMoney()} вискоинов`
         );
-    }, 1000 * 2);
+    }, 1000 * 2.1);
 };
