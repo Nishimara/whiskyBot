@@ -73,9 +73,7 @@ export class User {
     }
 
     public setMoney(money: number) {
-        let tmp: number = Number(this.money) + money;
-
-        this.money = BigInt(tmp);
+        this.money = BigInt(Number(this.money) + money);
         getPrisma()
             .users.upsert({
                 create: {

@@ -1,12 +1,12 @@
 import { chats } from '@prisma/client';
 import { getPrisma } from '.';
 
-export let getChat = async (
+export const getChat = async (
     userId: number,
     chatId: number,
     value?: number
 ): Promise<chats> => {
-    let res = await getPrisma().chats.findMany({
+    const res = await getPrisma().chats.findMany({
         where: {
             AND: [
                 {
