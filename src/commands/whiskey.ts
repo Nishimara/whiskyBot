@@ -8,7 +8,6 @@ export const whiskeyCommand = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
 ): Promise<void> => {
     if (ctx.chat.type == 'private') return;
-
     const user = new User(ctx.message.from.id);
 
     await user.init();
@@ -17,7 +16,7 @@ export const whiskeyCommand = async (
     let ending: string;
     let endingAll: string;
 
-    whiskey(user).then((drank: Drank) => {
+    whiskey(user, ctx.chat.id).then((drank: Drank) => {
         if (drank.drankNow == -1) {
             if (!drank.cooldown) return;
 

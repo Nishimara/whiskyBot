@@ -8,7 +8,7 @@ export class User {
 
     private lastTimeDrank: BigInt;
 
-    private money: number;
+    private money: BigInt;
 
     public getId(): number {
         return this.id;
@@ -23,7 +23,7 @@ export class User {
     }
 
     public getMoney(): number {
-        return this.money;
+        return Number(this.money);
     }
 
     public setDrankAll(amount: number) {
@@ -73,14 +73,16 @@ export class User {
     }
 
     public setMoney(money: number) {
-        this.money += money;
+        let tmp: number = Number(this.money) + money;
+
+        this.money = BigInt(tmp);
         getPrisma()
             .users.upsert({
                 create: {
                     id: this.id
                 },
                 update: {
-                    money: this.money
+                    money: Number(this.money)
                 },
                 where: {
                     id: this.id
@@ -101,7 +103,7 @@ export class User {
         if (data) {
             this.drankAll = data.amount;
             this.lastTimeDrank = data.lastTimeDrank;
-            this.money = data.money;
+            this.money = BigInt(data.money);
             logger.push('Cast data from db to User class.', this.id);
         } else {
             await getPrisma().users.create({
@@ -118,6 +120,6 @@ export class User {
         this.id = id;
         this.drankAll = 0;
         this.lastTimeDrank = BigInt(0);
-        this.money = 0;
+        this.money = BigInt(0);
     }
 }

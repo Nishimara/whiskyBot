@@ -3,6 +3,8 @@ export class Drank {
 
     public drankAll: number;
 
+    public drankInThisChat: number;
+
     public cooldown?: number;
 
     public money: number;
@@ -11,11 +13,13 @@ export class Drank {
         drankNow: number,
         drankAll: number,
         money: number,
-        cooldown: number
+        cooldown: number,
+        drankInThisChat: number
     ) {
         this.drankNow = drankNow;
         this.drankAll = drankAll;
         this.money = money;
         this.cooldown = cooldown;
+        this.drankInThisChat = drankInThisChat;
     }
 }

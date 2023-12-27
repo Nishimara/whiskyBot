@@ -1,6 +1,6 @@
 {
   "name": "whiskybot",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "Telegram Bot",
   "main": "src/index.ts",
   "repository": "git@github.com:HackerLacker/whiskyBot.git",
@@ -16,6 +16,7 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:pull": "prisma db pull",
+    "prisma:studio": "prisma studio",
     "prepare": "husky install",
     "test": "bun test",
     "test:watch": "bun --watch test"

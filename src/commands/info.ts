@@ -1,6 +1,7 @@
 import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User } from '../classes';
+import { getChat } from '../functions/getChat';
 
 export const info = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
@@ -12,7 +13,9 @@ export const info = async (
     let message;
 
     await user.init();
+    let chat = await getChat(user.getId(), ctx.chat.id);
 
+    if (!chat) return;
     if (ctx.message.from.username) message = '@' + ctx.message.from.username;
     else {
         message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
@@ -21,7 +24,9 @@ export const info = async (
 
     let ending: string;
 
-    switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
+    let totalAmount: number = chat.totalAmount;
+
+    switch (Math.floor(totalAmount).toString().slice(-1)) {
         case '0':
             ending = 'ов';
             break;
@@ -41,11 +46,11 @@ export const info = async (
             ending = 'ов';
             break;
     }
-
-    message += ` твоя статистика:\n\nВыпито в этом чате: ${
-        Number((user.getDrankAll() % 1).toFixed(1)) == 0
-            ? user.getDrankAll().toFixed(0)
-            : user.getDrankAll().toFixed(1)
+    //зробiш склоны
+    message += ` твоя статистика:\n\nВыпито всего: ${user.getDrankAll()}\nВыпито в этом чате: ${
+        Number((totalAmount % 1).toFixed(1)) == 0
+            ? totalAmount.toFixed(0)
+            : totalAmount.toFixed(1)
     } литр${ending}\nВискоинов: ${user.getMoney()}`;
 
     if (withHTML) return ctx.replyWithHTML(message);
