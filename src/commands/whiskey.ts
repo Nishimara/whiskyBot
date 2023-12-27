@@ -19,27 +19,6 @@ export const whiskeyCommand = async (
 
     const chat = await getChat(user.getId(), ctx.chat.id);
 
-    switch (Math.floor(chat.totalAmount).toString().slice(-1)) {
-        case '0':
-            ending = 'ов';
-            break;
-        case '1':
-            ending = '';
-            break;
-        case '2':
-            ending = 'ов';
-            break;
-        case '3':
-            ending = 'а';
-            break;
-        case '4':
-            ending = 'а';
-            break;
-        default:
-            ending = 'ов';
-            break;
-    }
-
     whiskey(user, ctx.chat.id).then((drank: Drank) => {
         if (drank.drankNow == -1) {
             if (!drank.cooldown) return;
@@ -62,6 +41,27 @@ export const whiskeyCommand = async (
                     break;
                 default:
                     endingAll = 'ов';
+                    break;
+            }
+
+            switch (Math.floor(chat.totalAmount).toString().slice(-1)) {
+                case '0':
+                    ending = 'ов';
+                    break;
+                case '1':
+                    ending = '';
+                    break;
+                case '2':
+                    ending = 'ов';
+                    break;
+                case '3':
+                    ending = 'а';
+                    break;
+                case '4':
+                    ending = 'а';
+                    break;
+                default:
+                    ending = 'ов';
                     break;
             }
 
@@ -99,6 +99,16 @@ export const whiskeyCommand = async (
             return ctx.reply(message);
         }
 
+        if (ctx.message.from.username)
+            message = '@' + ctx.message.from.username;
+        else {
+            message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+            withHTML = 1;
+        }
+
+        let endingCurrent: string;
+
+        // total amount dranked
         switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
             case '0':
                 endingAll = 'ов';
@@ -107,7 +117,7 @@ export const whiskeyCommand = async (
                 endingAll = '';
                 break;
             case '2':
-                endingAll = 'ов';
+                endingAll = 'а';
                 break;
             case '3':
                 endingAll = 'а';
@@ -120,27 +130,21 @@ export const whiskeyCommand = async (
                 break;
         }
 
-        if (ctx.message.from.username)
-            message = '@' + ctx.message.from.username;
-        else {
-            message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-            withHTML = 1;
-        }
-
-        switch (Math.floor(drank.drankNow)) {
-            case 0:
+        // total amount dranked in chat
+        switch (Math.floor(chat.totalAmount).toString().slice(-1)) {
+            case '0':
                 ending = 'ов';
                 break;
-            case 1:
-                ending = '';
+            case '1':
+                ending = 'ов';
                 break;
-            case 2:
+            case '2':
                 ending = 'а';
                 break;
-            case 3:
+            case '3':
                 ending = 'а';
                 break;
-            case 4:
+            case '4':
                 ending = 'а';
                 break;
             default:
@@ -148,13 +152,37 @@ export const whiskeyCommand = async (
                 break;
         }
 
+        // dranked now
+        switch (Math.floor(drank.drankNow)) {
+            case 0:
+                endingCurrent = 'ов';
+                break;
+            case 1:
+                endingCurrent = '';
+                break;
+            case 2:
+                endingCurrent = 'а';
+                break;
+            case 3:
+                endingCurrent = 'а';
+                break;
+            case 4:
+                endingCurrent = 'а';
+                break;
+            default:
+                endingCurrent = 'ов';
+                break;
+        }
+
         message += ` ты выпил ${
             drank.drankNow
-        } литр${ending} виски и заработал ${
+        } литр${endingCurrent} виски и заработал ${
             drank.money
         } вискоинов, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
-        )} литр${endingAll}`;
+        )} литр${endingAll}.\nВ этом чате выпито ${chat.totalAmount.toFixed(
+            1
+        )} литр${ending}`;
 
         logger.push(
             `Added ${drank.drankNow} liters of whisky`,
