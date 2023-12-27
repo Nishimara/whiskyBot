@@ -3,6 +3,7 @@ import { Context } from 'telegraf';
 import { User, Drank } from '../classes';
 import { whiskey } from '../functions';
 import { logger } from '../consts';
+import { getChat } from '../functions';
 
 export const whiskeyCommand = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
@@ -15,6 +16,29 @@ export const whiskeyCommand = async (
     let withHTML: number;
     let ending: string;
     let endingAll: string;
+
+    const chat = await getChat(user.getId(), ctx.chat.id);
+
+    switch (Math.floor(chat.totalAmount).toString().slice(-1)) {
+        case '0':
+            ending = 'ов';
+            break;
+        case '1':
+            ending = '';
+            break;
+        case '2':
+            ending = 'ов';
+            break;
+        case '3':
+            ending = 'а';
+            break;
+        case '4':
+            ending = 'а';
+            break;
+        default:
+            ending = 'ов';
+            break;
+    }
 
     whiskey(user, ctx.chat.id).then((drank: Drank) => {
         if (drank.drankNow == -1) {
@@ -48,11 +72,15 @@ export const whiskeyCommand = async (
                 withHTML = 1;
             }
 
-            message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито ${
+            message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВсего выпито ${
                 Number((drank.drankAll % 1).toFixed(1)) == 0
                     ? drank.drankAll.toFixed(0)
                     : drank.drankAll.toFixed(1)
-            } литр${endingAll}.\nНафармлено ${user.getMoney()} вискоинов.\n\nПопробуй снова через ${(
+            } литр${endingAll}.\nВыпито в этом чате ${
+                Number((chat.totalAmount % 1).toFixed(1)) == 0
+                    ? chat.totalAmount.toFixed(0)
+                    : chat.totalAmount.toFixed(1)
+            } литр${ending}.\nНафармлено ${user.getMoney()} вискоинов.\n\nПопробуй снова через ${(
                 drank.cooldown /
                 (1000 * 60)
             )

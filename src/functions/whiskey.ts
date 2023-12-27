@@ -1,6 +1,6 @@
 import { Drank, User } from '../classes';
 import { cooldown, random } from '../consts';
-import { getChat } from './getChat';
+import { getChat } from './';
 
 export const whiskey = async (user: User, chatId: number): Promise<Drank> => {
     const cd: number = Date.now() - Number(user.getLastTimeDrank());
@@ -21,7 +21,7 @@ export const whiskey = async (user: User, chatId: number): Promise<Drank> => {
         )
     );
 
-    let res = await getChat(user.getId(), chatId, now);
+    const res = await getChat(user.getId(), chatId, now);
 
     user.setDrankAll(now);
     user.setMoney(money);
