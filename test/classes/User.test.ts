@@ -1,4 +1,4 @@
-import { User } from '../../src/classes';
+import { User } from '../../src/classes/User';
 
 class MockUser extends User {
     public setDrankAll(): void {}
