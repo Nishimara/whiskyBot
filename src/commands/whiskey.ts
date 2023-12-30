@@ -180,9 +180,11 @@ export const whiskeyCommand = async (
             drank.money
         } вискоинов, красава. За все время ты бахнул ${drank.drankAll.toFixed(
             1
-        )} литр${endingAll}.\nВ этом чате выпито ${(
-            chat.totalAmount + drank.drankNow
-        ).toFixed(1)} литр${ending}`;
+        )} литр${endingAll}.\nВ этом чате выпито ${
+            Number(((chat.totalAmount + drank.drankNow) % 1).toFixed(1)) == 0
+                ? (chat.totalAmount + drank.drankNow).toFixed(0)
+                : (chat.totalAmount + drank.drankNow).toFixed(1)
+        } литр${ending}`;
 
         logger.push(
             `Added ${drank.drankNow} liters of whisky`,
