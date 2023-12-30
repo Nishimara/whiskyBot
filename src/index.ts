@@ -19,15 +19,15 @@ bot.catch((err, ctx) => {
 });
 
 bot.command('whiskey', async (ctx) => {
-    whiskeyCommand(ctx);
+    await whiskeyCommand(ctx);
 });
 
 bot.command('info', async (ctx) => {
-    info(ctx);
+    await info(ctx);
 });
 
 bot.command('gamba', async (ctx) => {
-    gamba(ctx);
+    await gamba(ctx);
 });
 
 bot.launch();
