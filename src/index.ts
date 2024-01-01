@@ -4,14 +4,11 @@ import { gamba, info, whiskeyCommand } from './commands';
 
 const bot = new Telegraf(Bun.env.TELEGRAM_TOKEN!);
 
-bot.start((ctx) => {
-    if (ctx.chat.type == 'private') {
-        ctx.reply(
-            'Привет! Я бот который позволяет пить виски раз в час.\n\nДобавь меня в беседу и пропиши /whiskey'
-        );
-    } else {
-        ctx.reply('Привет! Я бот который позволяет пить виски раз в час.');
-    }
+bot.start(async (ctx) => {
+    if (ctx.chat.type != 'private') return;
+    await ctx.reply(
+        'Привет! Я бот который позволяет пить виски раз в час.\n\nДобавь меня в беседу и пропиши /whiskey'
+    );
 });
 
 bot.catch((err, ctx) => {
