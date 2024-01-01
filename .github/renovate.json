@@ -4,6 +4,7 @@
         "config:recommended",
         ":timezone(Europe/Moscow)"
     ],
+    "schedule": ["before 7am every weekday", "every weekend"],
     "rebaseWhen": "conflicted",
     "packageRules": [
       {
