@@ -1,4 +1,5 @@
 import { Drank } from '../../src/classes/Drank';
+import { it, expect } from 'bun:test';
 
 it('Drank', () => {
     const drank = new Drank(0, 1, 2, 3, 4);

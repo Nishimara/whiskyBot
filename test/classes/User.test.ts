@@ -1,4 +1,5 @@
 import { User } from '../../src/classes/User';
+import { it, expect } from 'bun:test';
 
 class MockUser extends User {
     public setDrankAll(): void {}
