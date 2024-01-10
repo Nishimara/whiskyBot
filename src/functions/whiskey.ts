@@ -1,6 +1,8 @@
-import { Drank, User } from '../classes';
+import { Drank, User, Stack } from '../classes';
 import { cooldown, random } from '../consts';
 import { getChat } from '.';
+
+const stack = new Stack();
 
 export const whiskey = async (user: User, chatId: number): Promise<Drank> => {
     const cd: number = Date.now() - Number(user.getLastTimeDrank());
@@ -23,8 +25,13 @@ export const whiskey = async (user: User, chatId: number): Promise<Drank> => {
 
     const res = await getChat(user.getId(), chatId, now);
 
-    user.setDrankAll(now);
-    user.setMoney(money);
+    stack.push(async (user) => {
+        await user.init();
+        user.setDrankAll(now);
+        user.setMoney(money);
+    }, user);
+    //  user.setDrankAll(now);
+    //  user.setMoney(money);
 
     return new Drank(
         now,

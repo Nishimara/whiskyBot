@@ -1,7 +1,4 @@
-import { Logger } from './Logger';
-import { User } from './User';
-import { Drank } from './Drank';
-
-export { Logger };
-export { User };
-export { Drank };
+export { Logger } from './Logger';
+export { User } from './User';
+export { Drank } from './Drank';
+export { Stack } from './Stack';

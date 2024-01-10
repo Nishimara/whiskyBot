@@ -7,7 +7,7 @@
 ## Запуск
 Для запуска необходимо внести в `.env` следующее: 
 ```sh
-DATABASE_URL="mysql://username:password@ip:port/database_name"
+DATABASE_URL="mysql://username:password@ip:port/database_name?connection_limit=1"
 TELEGRAM_TOKEN="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11"
 ```
 
