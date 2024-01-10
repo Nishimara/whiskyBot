@@ -1,9 +1,8 @@
 import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User, Drank } from '../classes';
-import { whiskey } from '../functions';
+import { whiskey, getChat } from '../functions';
 import { logger } from '../consts';
-import { getChat } from '../functions';
 
 export const whiskeyCommand = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>

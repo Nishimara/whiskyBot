@@ -1,5 +1,4 @@
-import { getPrisma } from '../functions';
-import { logger } from '../consts';
+import { prisma, logger } from '../consts';
 
 export class User {
     private id: number;
@@ -28,8 +27,8 @@ export class User {
 
     public setDrankAll(amount: number) {
         this.drankAll += amount;
-        getPrisma()
-            .users.upsert({
+        prisma.users
+            .upsert({
                 create: {
                     id: this.id
                 },
@@ -51,8 +50,8 @@ export class User {
 
     public setLastTimeDrank(lastTimeDrank: BigInt) {
         this.lastTimeDrank = lastTimeDrank;
-        getPrisma()
-            .users.upsert({
+        prisma.users
+            .upsert({
                 create: {
                     id: this.id
                 },
@@ -74,8 +73,8 @@ export class User {
 
     public setMoney(money: number) {
         this.money = BigInt(Number(this.money) + money);
-        getPrisma()
-            .users.upsert({
+        prisma.users
+            .upsert({
                 create: {
                     id: this.id
                 },
@@ -92,7 +91,7 @@ export class User {
     }
 
     public async init() {
-        const data = await getPrisma().users.findUnique({
+        const data = await prisma.users.findUnique({
             where: {
                 id: this.id
             }
@@ -104,7 +103,7 @@ export class User {
             this.money = BigInt(data.money);
             logger.push('Cast data from db to User class.', this.id);
         } else {
-            await getPrisma().users.create({
+            await prisma.users.create({
                 data: {
                     id: this.id
                 }

@@ -1,12 +1,12 @@
 import { chats } from '@prisma/client';
-import { getPrisma } from '.';
+import { prisma } from '../consts';
 
 export const getChat = async (
     userId: number,
     chatId: number,
     value?: number
 ): Promise<chats> => {
-    const res = await getPrisma().chats.findMany({
+    const res = await prisma.chats.findMany({
         where: {
             AND: [
                 {
@@ -20,7 +20,7 @@ export const getChat = async (
     });
 
     if (res.length == 0) {
-        await getPrisma().chats.create({
+        await prisma.chats.create({
             data: {
                 chatId: chatId,
                 userId: userId,
@@ -28,14 +28,14 @@ export const getChat = async (
             }
         });
         res[0] = {
-            id: BigInt(0),
+            id: 0,
             chatId: BigInt(chatId),
-            userId: BigInt(userId),
+            userId: userId,
             totalAmount: value ? value : 0
         };
     } else {
         if (value) {
-            await getPrisma().chats.updateMany({
+            await prisma.chats.updateMany({
                 data: {
                     totalAmount: res[0].totalAmount + value
                 },

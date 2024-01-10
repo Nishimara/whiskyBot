@@ -1,4 +1,6 @@
-import { getPrisma } from '../functions';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient(); // cannot import that shit from consts due to Circular dependency
 
 export class Logger {
     private time: BigInt = BigInt(0);
@@ -37,8 +39,8 @@ export class Logger {
             from == 0 ? 'none' : from
         }. ${message}`;
 
-        getPrisma()
-            .logger.create({
+        prisma.logger
+            .create({
                 data: {
                     time: Number(this.time),
                     message: this.message

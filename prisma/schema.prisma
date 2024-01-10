@@ -3,27 +3,26 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model users {
-  id            BigInt @id @unique
+  id            Int    @id @unique
   amount        Float  @default(0)
   lastTimeDrank BigInt @default(0)
-  money         BigInt    @default(0)
+  money         BigInt @default(0)
 }
 
 model logger {
-  id      BigInt @id @default(autoincrement())
+  id      Int @id @default(autoincrement())
   time    BigInt
   message String
 }
 
 model chats {
-  id            BigInt @id @default(autoincrement())
-  userId      BigInt
+  id          Int @id @default(autoincrement())
+  userId      Int
   chatId      BigInt
   totalAmount Float
 }

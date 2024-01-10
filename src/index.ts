@@ -1,6 +1,7 @@
 import { Telegraf } from 'telegraf';
 import { handler } from './functions';
 import { gamba, info, whiskeyCommand } from './commands';
+import { prisma } from './consts';
 
 const bot = new Telegraf(Bun.env.TELEGRAM_TOKEN!);
 
@@ -30,5 +31,11 @@ bot.command('gamba', async (ctx) => {
 bot.launch();
 console.log('Started!');
 
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+process.once('SIGINT', () => {
+    bot.stop('SIGINT');
+    prisma.$disconnect;
+});
+process.once('SIGTERM', () => {
+    bot.stop('SIGTERM');
+    prisma.$disconnect;
+});

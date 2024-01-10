@@ -1,7 +1,7 @@
 import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User } from '../classes';
-import { getChat } from '../functions/getChat';
+import { getChat } from '../functions';
 
 export const info = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
