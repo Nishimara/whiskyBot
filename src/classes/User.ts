@@ -25,9 +25,9 @@ export class User {
         return Number(this.money);
     }
 
-    public setDrankAll(amount: number) {
+    public async setDrankAll(amount: number) {
         this.drankAll += amount;
-        prisma.users
+        await prisma.users
             .upsert({
                 create: {
                     id: this.id
@@ -48,9 +48,9 @@ export class User {
             });
     }
 
-    public setLastTimeDrank(lastTimeDrank: BigInt) {
+    public async setLastTimeDrank(lastTimeDrank: BigInt) {
         this.lastTimeDrank = lastTimeDrank;
-        prisma.users
+        await prisma.users
             .upsert({
                 create: {
                     id: this.id
@@ -71,9 +71,9 @@ export class User {
             });
     }
 
-    public setMoney(money: number) {
+    public async setMoney(money: number) {
         this.money = BigInt(Number(this.money) + money);
-        prisma.users
+        await prisma.users
             .upsert({
                 create: {
                     id: this.id

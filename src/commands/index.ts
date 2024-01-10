@@ -1,7 +1,3 @@
-import { info } from './info';
-import { whiskeyCommand } from './whiskey';
-import { gamba } from './gamba';
-
-export { info };
-export { whiskeyCommand };
-export { gamba };
+export { info } from './info';
+export { whiskeyCommand } from './whiskey';
+export { gamba } from './gamba';

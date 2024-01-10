@@ -13,6 +13,7 @@ interface Gamba {
 }
 
 export const prisma = new PrismaClient();
+prisma.$connect;
 export const logger = new Logger();
 
 // Project settings

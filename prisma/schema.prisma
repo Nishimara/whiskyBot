@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model users {
-  id            Int    @id @unique
+  id            BigInt @id @unique
   amount        Float  @default(0)
   lastTimeDrank BigInt @default(0)
   money         BigInt @default(0)
@@ -22,7 +22,7 @@ model logger {
 
 model chats {
   id          Int @id @default(autoincrement())
-  userId      Int
+  userId      BigInt
   chatId      BigInt
   totalAmount Float
 }

@@ -30,7 +30,7 @@ export const getChat = async (
         res[0] = {
             id: 0,
             chatId: BigInt(chatId),
-            userId: userId,
+            userId: BigInt(userId),
             totalAmount: value ? value : 0
         };
     } else {
