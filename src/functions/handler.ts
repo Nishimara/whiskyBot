@@ -2,12 +2,12 @@ import { Context } from 'telegraf';
 import { Update } from '@telegraf/types';
 import { ignoreErrorCodes, logger } from '../consts';
 
-export const handler = (err: unknown, ctx: Context<Update>): void => {
-    interface iErr {
-        UserId?: number;
-        message?: string;
-    } // there has to be a better solution? rewrite
+interface iErr {
+    UserId?: number;
+    message?: string;
+}
 
+export const handler = (err: unknown, ctx: Context<Update>): void => {
     const error: iErr = err!;
     const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/)); // this regex can be better
     let ignored;

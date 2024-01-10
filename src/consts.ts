@@ -1,16 +1,18 @@
-import { Logger } from './classes';
+import { PrismaClient } from '@prisma/client';
+import { Logger } from './classes/Logger';
 
-interface iRandom {
+interface Random {
     drankMin: number;
     drankMax: number;
     moneyMin: number;
     moneyMax: number;
 }
-interface iGamba {
+interface Gamba {
     gambaMin: number;
     gambaCoef: number;
 }
 
+export const prisma = new PrismaClient();
 export const logger = new Logger();
 
 // Project settings
@@ -19,14 +21,14 @@ export const ignoreErrorCodes: number[] = [
     400, // not enough rights to send messages into group
     429 // too many requests
 ];
-export const random: iRandom = {
+export const random: Random = {
     drankMin: 0.3,
     drankMax: 5,
     moneyMin: 5,
     moneyMax: 15
 };
 
-export const gambaRules: iGamba = {
+export const gambaRules: Gamba = {
     gambaMin: 10,
     gambaCoef: 50
 };
