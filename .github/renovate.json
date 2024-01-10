@@ -10,7 +10,7 @@
       {
         "groupName": "dependencies",
         "matchDepTypes": ["dependencies", "devDependencies"],
-        "matchUpdateTypes": ["patch", "minor"],
+        "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
         "automerge": true,
         "schedule": ["before 7am on Monday"]
       },

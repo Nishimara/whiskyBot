@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Logger } from './classes/Logger';
+import { Logger } from './classes';
 
 interface Random {
     drankMin: number;
