@@ -32,12 +32,12 @@
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "1.5.3",
     "@telegraf/types": "6.9.1",
-    "@types/bun": "1.0.0",
-    "@typescript-eslint/eslint-plugin": "6.18.0",
-    "@typescript-eslint/parser": "6.18.0",
+    "@types/bun": "1.0.1",
+    "@typescript-eslint/eslint-plugin": "6.18.1",
+    "@typescript-eslint/parser": "6.18.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jest": "27.6.1",
+    "eslint-plugin-jest": "27.6.2",
     "lint-staged": "15.2.0",
     "prettier": "3.1.1",
     "typescript": "5.3.3"
