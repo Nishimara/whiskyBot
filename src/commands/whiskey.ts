@@ -14,9 +14,8 @@ export const whiskeyCommand = async (
 
     await user.init();
     let message: string;
-    let withHTML: number;
+    let withHTML: boolean = false;
     let ending: string;
-    let endingAll: string;
 
     const chat = await getChat(user.getId(), ctx.chat.id);
 
@@ -26,27 +25,7 @@ export const whiskeyCommand = async (
             if (drank.drankNow == -1) {
                 if (!drank.cooldown) return;
 
-                switch (Math.floor(user.getDrankAll()).toString().slice(-1)) {
-                    case '0':
-                        endingAll = 'ов';
-                        break;
-                    case '1':
-                        endingAll = '';
-                        break;
-                    case '2':
-                        endingAll = 'ов';
-                        break;
-                    case '3':
-                        endingAll = 'а';
-                        break;
-                    case '4':
-                        endingAll = 'а';
-                        break;
-                    default:
-                        endingAll = 'ов';
-                        break;
-                }
-
+                // total amount dranked in chat
                 switch (Math.floor(chat.totalAmount).toString().slice(-1)) {
                     case '0':
                         ending = 'ов';
@@ -72,14 +51,10 @@ export const whiskeyCommand = async (
                     message = '@' + ctx.message.from.username;
                 else {
                     message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-                    withHTML = 1;
+                    withHTML = true;
                 }
 
-                message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВсего выпито ${
-                    Number((drank.drankAll % 1).toFixed(1)) == 0
-                        ? drank.drankAll.toFixed(0)
-                        : drank.drankAll.toFixed(1)
-                } литр${endingAll}.\nВыпито в этом чате ${
+                message += ` ты уже пил виски недавно! Тебе нужно немного отойти.\nВыпито в этом чате ${
                     Number((chat.totalAmount % 1).toFixed(1)) == 0
                         ? chat.totalAmount.toFixed(0)
                         : chat.totalAmount.toFixed(1)
@@ -108,7 +83,7 @@ export const whiskeyCommand = async (
                 message = '@' + ctx.message.from.username;
             else {
                 message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-                withHTML = 1;
+                withHTML = true;
             }
 
             let endingCurrent: string;
@@ -166,7 +141,9 @@ export const whiskeyCommand = async (
                 0
                     ? (chat.totalAmount + drank.drankNow).toFixed(0)
                     : (chat.totalAmount + drank.drankNow).toFixed(1)
-            } литр${ending}, нафармлено ${user.getMoney()} вискоинов`;
+            } литр${ending}, нафармлено ${
+                user.getMoney() + drank.money
+            } вискоинов`;
 
             logger.push(
                 `Added ${drank.drankNow} liters of whisky`,

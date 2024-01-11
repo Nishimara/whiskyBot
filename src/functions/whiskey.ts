@@ -30,8 +30,6 @@ export const whiskey = async (user: User, chatId: number): Promise<Drank> => {
         user.setDrankAll(now);
         user.setMoney(money);
     }, user);
-    //  user.setDrankAll(now);
-    //  user.setMoney(money);
 
     return new Drank(
         now,
