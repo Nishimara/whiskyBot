@@ -67,7 +67,7 @@ export const info = async (
             break;
     }
 
-    message += ` твоя статистика:\n\nВыпито всего: ${
+    message += ` твоя статистика:\n\nВыпито во всех чатах: ${
         Number((user.getDrankAll() % 1).toFixed(1)) == 0
             ? user.getDrankAll().toFixed(0)
             : user.getDrankAll().toFixed(1)
