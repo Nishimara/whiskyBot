@@ -20,6 +20,10 @@ bot.command('whiskey', async (ctx) => {
     await whiskeyCommand(ctx);
 });
 
+bot.command('whisky', async (ctx) => {
+    await whiskeyCommand(ctx);
+});
+
 bot.command('info', async (ctx) => {
     await info(ctx);
 });
@@ -33,9 +37,11 @@ console.log('Started!');
 
 process.once('SIGINT', () => {
     bot.stop('SIGINT');
-    prisma.$disconnect;
+
+    return prisma.$disconnect;
 });
 process.once('SIGTERM', () => {
     bot.stop('SIGTERM');
-    prisma.$disconnect;
+
+    return prisma.$disconnect;
 });

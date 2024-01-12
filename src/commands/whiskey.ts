@@ -17,10 +17,10 @@ export const whiskeyCommand = async (
     let withHTML: boolean = false;
     let ending: string;
 
-    const chat = await getChat(user.getId(), ctx.chat.id);
-
     stack.push(async (user) => {
         await user.init();
+        const chat = await getChat(user.getId(), ctx.chat.id);
+
         await whiskey(user, ctx.chat.id).then((drank: Drank) => {
             if (drank.drankNow == -1) {
                 if (!drank.cooldown) return;
@@ -137,8 +137,8 @@ export const whiskeyCommand = async (
             } литр${endingCurrent} виски и заработал ${
                 drank.money
             } вискоинов, красава.\nВ этом чате выпито ${
-                Number(((chat.totalAmount + drank.drankNow) % 1).toFixed(1)) ==
-                0
+                // prettier-ignore
+                Number(((chat.totalAmount + drank.drankNow) % 1).toFixed(1)) == 0
                     ? (chat.totalAmount + drank.drankNow).toFixed(0)
                     : (chat.totalAmount + drank.drankNow).toFixed(1)
             } литр${ending}, нафармлено ${
