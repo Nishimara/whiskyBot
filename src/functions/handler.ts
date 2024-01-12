@@ -20,5 +20,5 @@ export const handler = (err: unknown, ctx: Context<Update>): void => {
 
     if (ignored) return;
 
-    logger.push(String(err), ctx.from?.id);
+    logger.push(String(err), ctx.from?.id, { type: 'error' });
 };
