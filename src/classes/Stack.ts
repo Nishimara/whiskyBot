@@ -27,10 +27,6 @@ export class Stack {
         }
     }
 
-    public peek(): task | undefined {
-        return this.items[this.items.length - 1];
-    }
-
     public size(): number {
         return this.items.length;
     }

@@ -9,7 +9,7 @@ interface iErr {
 
 export const handler = (err: unknown, ctx: Context<Update>): void => {
     const error: iErr = err!;
-    const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/)); // this regex can be better
+    const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/));
     let ignored;
 
     ignoreErrorCodes.forEach((elem) => {
@@ -20,5 +20,5 @@ export const handler = (err: unknown, ctx: Context<Update>): void => {
 
     if (ignored) return;
 
-    logger.push(String(err), ctx.from?.id); // possibly some highlighting to easily see errors in db?
+    logger.push(String(err), ctx.from?.id);
 };
