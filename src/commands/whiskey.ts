@@ -13,13 +13,14 @@ export const whiskeyCommand = async (
     const user = new User(ctx.message.from.id);
 
     await user.init();
+    const chat = await getChat(user.getId(), ctx.chat.id);
+
     let message: string;
     let withHTML: boolean = false;
     let ending: string;
 
     stack.push(async (user) => {
         await user.init();
-        const chat = await getChat(user.getId(), ctx.chat.id);
 
         await whiskey(user, ctx.chat.id).then((drank: Drank) => {
             if (drank.drankNow == -1) {
