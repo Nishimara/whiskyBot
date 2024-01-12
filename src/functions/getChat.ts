@@ -27,31 +27,32 @@ export const getChat = async (
                 totalAmount: value ? value : 0
             }
         });
-        res[0] = {
+
+        return {
             id: 0,
             chatId: BigInt(chatId),
             userId: BigInt(userId),
             totalAmount: value ? value : 0
-        };
-    } else {
-        if (value) {
-            await prisma.chats.updateMany({
-                data: {
-                    totalAmount: res[0].totalAmount + value
-                },
-                where: {
-                    AND: [
-                        {
-                            chatId: chatId
-                        },
-                        {
-                            userId: userId
-                        }
-                    ]
-                }
-            });
-            res[0].totalAmount += value;
-        }
+        } as chats;
+    }
+
+    if (value) {
+        await prisma.chats.updateMany({
+            data: {
+                totalAmount: res[0].totalAmount + value
+            },
+            where: {
+                AND: [
+                    {
+                        chatId: chatId
+                    },
+                    {
+                        userId: userId
+                    }
+                ]
+            }
+        });
+        res[0].totalAmount += value;
     }
 
     return res[0];

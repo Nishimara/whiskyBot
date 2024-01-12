@@ -9,16 +9,16 @@ interface iErr {
 
 export const handler = (err: unknown, ctx: Context<Update>): void => {
     const error: iErr = err!;
-    const regex: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/));
-    let ignored;
+    const code: number = Number(error.message?.match(/[^Error: ]\S\d+(?=: )/));
+    let ignored = false;
 
     ignoreErrorCodes.forEach((elem) => {
-        if (elem === regex) return (ignored = 1);
+        if (elem === code) return (ignored = true);
 
         return;
     });
 
-    if (ignored) return;
+    if (ignored || !error) return;
 
     logger.push(String(err), ctx.from?.id, { type: 'error' });
 };
