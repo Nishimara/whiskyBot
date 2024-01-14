@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { handler } from './functions';
-import { gamba, info, whiskeyCommand } from './commands';
+import { gamba, info, top, whiskeyCommand } from './commands';
 import { prisma } from './consts';
 
 const bot = new Telegraf(Bun.env.TELEGRAM_TOKEN!);
@@ -30,6 +30,10 @@ bot.command('info', async (ctx) => {
 
 bot.command('gamba', async (ctx) => {
     await gamba(ctx);
+});
+
+bot.command('top', async (ctx) => {
+    await top(ctx);
 });
 
 bot.launch();
