@@ -1,7 +1,6 @@
 import { Context } from 'telegraf';
 import { Update, Message } from '@telegraf/types';
 import { prisma } from '../consts';
-import { formatHTMLString } from '../functions';
 
 export const top = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
@@ -20,21 +19,39 @@ export const top = async (
 
     let message = 'Топ 10 чата по количеству выпитого виски:';
     let count = 0;
+    let ending: string;
 
     // forEach doesn't really like async functions
     for (const elem of chatters) {
-        message += `\n${++count}: <a href="tg://user?id=${
-            elem.userId
-        }">${formatHTMLString(
+        switch (Math.floor(elem.totalAmount).toString().slice(-1)) {
+            case '0':
+                ending = 'ов';
+                break;
+            case '1':
+                ending = '';
+                break;
+            case '2':
+                ending = 'ов';
+                break;
+            case '3':
+                ending = 'а';
+                break;
+            case '4':
+                ending = 'а';
+                break;
+            default:
+                ending = 'ов';
+                break;
+        }
+
+        message += `\n${++count}: ${
             (await ctx.getChatMember(Number(elem.userId))).user.first_name
-        )}</a> ${
+        } ${
             Number(elem.totalAmount.toFixed(1)) % 1 == 0
                 ? elem.totalAmount.toFixed(0)
                 : elem.totalAmount.toFixed(1)
-        }`;
+        } литр${ending}`;
     }
 
-    return await ctx.replyWithHTML(message, {
-        disable_notification: true
-    });
+    return await ctx.reply(message);
 };
