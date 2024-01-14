@@ -9,7 +9,7 @@ export const info = async (
     if (ctx.chat.type == 'private') return;
 
     const user = new User(ctx.from.id);
-    let withHTML;
+    let withHTML = false;
     let message;
 
     await user.init();
@@ -19,7 +19,7 @@ export const info = async (
     if (ctx.message.from.username) message = '@' + ctx.message.from.username;
     else {
         message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-        withHTML = 1;
+        withHTML = true;
     }
 
     let ending: string;
@@ -79,5 +79,5 @@ export const info = async (
 
     if (withHTML) return ctx.replyWithHTML(message);
 
-    return ctx.reply(message);
+    return await ctx.reply(message);
 };

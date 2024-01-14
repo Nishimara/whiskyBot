@@ -20,15 +20,18 @@ export const top = async (
     let message = 'Топ 10 чата по количеству выпитого виски:\n';
     let count = 0;
 
-    chatters.forEach(async (elem) => {
-        message += `${++count}: <a href="tg://user?id=${elem.userId.toString()}">placeholder</a> ${
+    for (const elem of chatters) {
+        // forEach doesn't really like async functions
+        message += `${++count}: <a href="tg://user?id=${elem.userId}">${
+            (await ctx.getChatMember(Number(elem.userId))).user.first_name
+        }</a> ${
             Number(elem.totalAmount.toFixed(1)) % 1 == 0
                 ? elem.totalAmount.toFixed(0)
                 : elem.totalAmount.toFixed(1)
         }\n`;
-    });
+    }
 
-    ctx.replyWithHTML(message, {
+    await ctx.replyWithHTML(message, {
         disable_notification: true
     });
 };
