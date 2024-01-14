@@ -1,7 +1,7 @@
 import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User, Drank, Stack } from '../classes';
-import { whiskey, getChat } from '../functions';
+import { whiskey, getChat, formatHTMLString } from '../functions';
 import { logger } from '../consts';
 
 const stack = new Stack();
@@ -51,7 +51,9 @@ export const whiskeyCommand = async (
                 if (ctx.message.from.username)
                     message = '@' + ctx.message.from.username;
                 else {
-                    message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+                    message = `<a href="tg://user?id=${
+                        ctx.message.from.id
+                    }">${formatHTMLString(ctx.message.from.first_name)}</a>`;
                     withHTML = true;
                 }
 
@@ -83,7 +85,9 @@ export const whiskeyCommand = async (
             if (ctx.message.from.username)
                 message = '@' + ctx.message.from.username;
             else {
-                message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+                message = `<a href="tg://user?id=${
+                    ctx.message.from.id
+                }">${formatHTMLString(ctx.message.from.first_name)}</a>`;
                 withHTML = true;
             }
 

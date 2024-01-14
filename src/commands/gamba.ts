@@ -2,6 +2,7 @@ import { Context } from 'telegraf';
 import { Update, Message } from '@telegraf/types';
 import { User, Stack } from '../classes';
 import { logger, gambaRules } from '../consts';
+import { formatHTMLString } from '../functions';
 
 const stack = new Stack();
 
@@ -50,7 +51,9 @@ export const gamba = async (
                 if (ctx.message.from.username)
                     message = '@' + ctx.message.from.username;
                 else {
-                    message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+                    message = `<a href="tg://user?id=${
+                        ctx.message.from.id
+                    }">${formatHTMLString(ctx.message.from.first_name)}</a>`;
                     withHTML = true;
                 }
 
@@ -80,7 +83,9 @@ export const gamba = async (
             if (ctx.message.from.username)
                 message = '@' + ctx.message.from.username;
             else {
-                message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+                message = `<a href="tg://user?id=${
+                    ctx.message.from.id
+                }">${formatHTMLString(ctx.message.from.first_name)}</a>`;
                 withHTML = true;
             }
 
