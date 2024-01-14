@@ -1,10 +1,11 @@
 import { Context } from 'telegraf';
 import { Update, Message } from '@telegraf/types';
 import { prisma } from '../consts';
+import { formatHTMLString } from '../functions';
 
 export const top = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
-): Promise<void> => {
+): Promise<object> => {
     const chatters = await prisma.chats.findMany({
         orderBy: [
             {
@@ -17,21 +18,23 @@ export const top = async (
         take: 10
     });
 
-    let message = 'Топ 10 чата по количеству выпитого виски:\n';
+    let message = 'Топ 10 чата по количеству выпитого виски:';
     let count = 0;
 
+    // forEach doesn't really like async functions
     for (const elem of chatters) {
-        // forEach doesn't really like async functions
-        message += `${++count}: <a href="tg://user?id=${elem.userId}">${
+        message += `\n${++count}: <a href="tg://user?id=${
+            elem.userId
+        }">${formatHTMLString(
             (await ctx.getChatMember(Number(elem.userId))).user.first_name
-        }</a> ${
+        )}</a> ${
             Number(elem.totalAmount.toFixed(1)) % 1 == 0
                 ? elem.totalAmount.toFixed(0)
                 : elem.totalAmount.toFixed(1)
-        }\n`;
+        }`;
     }
 
-    await ctx.replyWithHTML(message, {
+    return await ctx.replyWithHTML(message, {
         disable_notification: true
     });
 };

@@ -1,7 +1,7 @@
 import { Update, Message } from '@telegraf/types';
 import { Context } from 'telegraf';
 import { User } from '../classes';
-import { getChat } from '../functions';
+import { getChat, formatHTMLString } from '../functions';
 
 export const info = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
@@ -18,7 +18,9 @@ export const info = async (
     if (!chat) return;
     if (ctx.message.from.username) message = '@' + ctx.message.from.username;
     else {
-        message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
+        message = `<a href="tg://user?id=${
+            ctx.message.from.id
+        }">${formatHTMLString(ctx.message.from.first_name)}</a>`;
         withHTML = true;
     }
 
