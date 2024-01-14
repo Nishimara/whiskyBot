@@ -35,15 +35,15 @@ export const gamba = async (
     setTimeout(() => {
         stack.push(async (user) => {
             await user.init();
-            let isWin: number = 0;
+            let isWin = false;
 
             [1, 22, 43, 64].forEach((e) => {
-                if (e == dice.dice.value) return (isWin = 1);
+                if (e == dice.dice.value) return (isWin = true);
 
                 return;
             });
             let message: string;
-            let withHTML: number = 0;
+            let withHTML = false;
 
             if (!isWin) {
                 user.setMoney(Number(num[0]) * -1);
@@ -51,7 +51,7 @@ export const gamba = async (
                     message = '@' + ctx.message.from.username;
                 else {
                     message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-                    withHTML = 1;
+                    withHTML = true;
                 }
 
                 logger.push(
@@ -60,14 +60,14 @@ export const gamba = async (
                 );
 
                 if (withHTML)
-                    return ctx.replyWithHTML(
+                    return await ctx.replyWithHTML(
                         message +
                             ` Ты проиграл ${
                                 num[0]
                             } вискоинов :(\nТвой счет: ${user.getMoney()} вискоинов`
                     );
 
-                return ctx.reply(
+                return await ctx.reply(
                     message +
                         ` Ты проиграл ${
                             num[0]
@@ -81,7 +81,7 @@ export const gamba = async (
                 message = '@' + ctx.message.from.username;
             else {
                 message = `<a href="tg://user?id=${ctx.message.from.id}">${ctx.message.from.first_name}</a>`;
-                withHTML = 1;
+                withHTML = true;
             }
 
             logger.push(
@@ -92,14 +92,14 @@ export const gamba = async (
             );
 
             if (withHTML)
-                return ctx.replyWithHTML(
+                return await ctx.replyWithHTML(
                     message +
                         ` Ты выйграл ${
                             Number(num[0]) * gambaRules.gambaCoef
                         } вискоинов!\nТвой счет: ${user.getMoney()} вискоинов`
                 );
 
-            return ctx.reply(
+            return await ctx.reply(
                 message +
                     ` Ты выйграл ${
                         Number(num[0]) * gambaRules.gambaCoef

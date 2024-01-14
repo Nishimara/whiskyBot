@@ -16,13 +16,13 @@ export const whiskeyCommand = async (
     const chat = await getChat(user.getId(), ctx.chat.id);
 
     let message: string;
-    let withHTML: boolean = false;
+    let withHTML = false;
     let ending: string;
 
     stack.push(async (user) => {
         await user.init();
 
-        await whiskey(user, ctx.chat.id).then((drank: Drank) => {
+        await whiskey(user, ctx.chat.id).then(async (drank: Drank) => {
             if (drank.drankNow == -1) {
                 if (!drank.cooldown) return;
 
@@ -75,9 +75,9 @@ export const whiskeyCommand = async (
                     ctx.message.from.id
                 );
 
-                if (withHTML) ctx.replyWithHTML(message);
+                if (withHTML) return await ctx.replyWithHTML(message);
 
-                return ctx.reply(message);
+                return await ctx.reply(message);
             }
 
             if (ctx.message.from.username)
@@ -152,9 +152,9 @@ export const whiskeyCommand = async (
             );
             logger.push(`Added ${drank.money} moneys`, ctx.message.from.id);
 
-            if (withHTML) return ctx.replyWithHTML(message);
+            if (withHTML) return await ctx.replyWithHTML(message);
 
-            return ctx.reply(message);
+            return await ctx.reply(message);
         });
     }, user);
 };
