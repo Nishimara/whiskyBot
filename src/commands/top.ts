@@ -6,6 +6,7 @@ export const top = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
 ): Promise<void | object> => {
     if (ctx.chat.type == 'private') return;
+
     const chatters = await prisma.chats.findMany({
         orderBy: [
             {
@@ -20,10 +21,12 @@ export const top = async (
 
     let message = 'Топ 10 чата по количеству выпитого виски:';
     let count = 0;
-    let ending: string;
 
     // forEach doesn't really like async functions
     for (const elem of chatters) {
+        let ending: string;
+        let member: string;
+
         switch (Math.floor(elem.totalAmount).toString().slice(-1)) {
             case '0':
                 ending = 'ов';
@@ -45,9 +48,14 @@ export const top = async (
                 break;
         }
 
-        message += `\n${++count}: ${
-            (await ctx.getChatMember(Number(elem.userId))).user.first_name
-        } ${
+        try {
+            member = (await ctx.getChatMember(Number(elem.userId))).user
+                .first_name;
+        } catch {
+            member = 'Вышедший пользователь'; // maybe figure a workaround later...
+        }
+
+        message += `\n${++count}: ${member} ${
             Number(elem.totalAmount.toFixed(1)) % 1 == 0
                 ? elem.totalAmount.toFixed(0)
                 : elem.totalAmount.toFixed(1)
