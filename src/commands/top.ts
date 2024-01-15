@@ -4,7 +4,8 @@ import { prisma } from '../consts';
 
 export const top = async (
     ctx: Context<Update.MessageUpdate<Message.TextMessage>>
-): Promise<object> => {
+): Promise<void | object> => {
+    if (ctx.chat.type == 'private') return;
     const chatters = await prisma.chats.findMany({
         orderBy: [
             {
