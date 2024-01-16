@@ -3,14 +3,14 @@ import { prisma } from '../consts';
 
 export const getChat = async (
     userId: number,
-    chatId: number,
+    chatId: number | bigint,
     value?: number
 ): Promise<chats> => {
     const res = await prisma.chats.findMany({
         where: {
             AND: [
                 {
-                    chatId: chatId
+                    chatId: typeof chatId === 'bigint' ? chatId : BigInt(chatId)
                 },
                 {
                     userId: userId
@@ -22,7 +22,7 @@ export const getChat = async (
     if (res.length == 0) {
         await prisma.chats.create({
             data: {
-                chatId: chatId,
+                chatId: typeof chatId === 'bigint' ? chatId : BigInt(chatId),
                 userId: userId,
                 totalAmount: value ? value : 0
             }
@@ -44,7 +44,8 @@ export const getChat = async (
             where: {
                 AND: [
                     {
-                        chatId: chatId
+                        chatId:
+                            typeof chatId === 'bigint' ? chatId : BigInt(chatId)
                     },
                     {
                         userId: userId

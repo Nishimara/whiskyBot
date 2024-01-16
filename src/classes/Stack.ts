@@ -2,7 +2,7 @@ import { User } from '.';
 import { Message } from '@telegraf/types';
 
 // eslint-disable-next-line no-unused-vars
-type task = (user: User) => Promise<void | Message.TextMessage>;
+type task = (user: User, ...args: any) => Promise<void | Message.TextMessage>;
 
 export class Stack {
     private items: task[];
@@ -14,14 +14,14 @@ export class Stack {
         this.running = false;
     }
 
-    public async push(item: task, user: User): Promise<void> {
+    public async push(item: task, user: User, ...args: any): Promise<void> {
         this.items.push(item);
         if (!this.running) {
             this.running = true;
             while (this.size() > 0) {
                 const nextTask = this.shift();
 
-                await nextTask!(user);
+                await nextTask!(user, args);
             }
             this.running = false;
         }

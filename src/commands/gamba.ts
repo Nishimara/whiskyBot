@@ -16,7 +16,7 @@ export const gamba = async (
 
     await user.init();
 
-    if (num == null)
+    if (!num)
         return ctx.reply('Введите количество вискоинов! Пример: /gamba 10');
     if (Number(num[0]) < gambaRules.gambaMin)
         return ctx.reply(
