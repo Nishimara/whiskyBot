@@ -22,22 +22,22 @@
     "test:watch": "bun --watch test"
   },
   "dependencies": {
-    "@prisma/client": "5.8.0",
+    "@prisma/client": "5.8.1",
     "husky": "8.0.3",
-    "prisma": "5.8.0",
+    "prisma": "5.8.1",
     "telegraf": "4.15.3"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-ts": "1.5.3",
+    "@stylistic/eslint-plugin-ts": "1.5.4",
     "@telegraf/types": "6.9.1",
-    "@types/bun": "1.0.1",
-    "@typescript-eslint/eslint-plugin": "6.18.1",
-    "@typescript-eslint/parser": "6.18.1",
+    "@types/bun": "1.0.3",
+    "@typescript-eslint/eslint-plugin": "6.19.1",
+    "@typescript-eslint/parser": "6.19.1",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-jest": "27.6.3",
     "lint-staged": "15.2.0",
-    "prettier": "3.2.2",
+    "prettier": "3.2.4",
     "typescript": "5.3.3"
   },
   "lint-staged": {
