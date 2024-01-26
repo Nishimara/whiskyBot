@@ -31,5 +31,5 @@ export const random: Random = {
 
 export const gambaRules: Gamba = {
     gambaMin: 10,
-    gambaCoef: 50
+    gambaCoef: 20
 };
